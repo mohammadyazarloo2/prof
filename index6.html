@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مربی بدنسازی | علی محمدی</title>
+    <!-- Add Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Add Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Vazir', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .section {
+            min-height: 100vh;
+            width: 100%;
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('./assets/img/fitness/4.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+            z-index: 2;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.5; }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            }
+            50% {
+                background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+            }
+            100% {
+                background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+            transform: translateY(0);
+            animation: float 8s ease-in-out infinite;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientFlow 8s ease infinite;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .schedule-section {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .schedule-title {
+            font-size: 1.2rem;
+            color: #4ECDC4;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .schedule-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .schedule-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(-5px);
+        }
+
+        .schedule-day {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .schedule-time {
+            color: #4ECDC4;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .schedule-section {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Program Card Styles */
+        .program-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+            background-size: 200% 100%;
+            animation: gradientMove 3s linear infinite;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .program-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            filter: brightness(0.9);
+        }
+
+        .program-card:hover .program-image {
+            transform: scale(1.1);
+            filter: brightness(1);
+        }
+
+        .program-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            position: relative;
+            display: inline-block;
+        }
+
+        .program-description {
+            color: #e2e8f0;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .program-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .program-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            padding: 0.6rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .program-feature:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(-5px);
+            color: #4ECDC4;
+        }
+
+        .program-feature::before {
+            content: "•";
+            color: #4ECDC4;
+            margin-left: 0.8rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Stats Section Styles */
+        .stats-section {
+            background: linear-gradient(135deg, #1a237e, #0d47a1);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        /* Testimonial Styles */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 6rem;
+            color: rgba(78, 205, 196, 0.1);
+            font-family: serif;
+            transform: rotate(10deg);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 3px solid #4ECDC4;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-card:hover .testimonial-avatar {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #FF6B6B;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            position: relative;
+            padding: 1rem;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #fff;
+            font-size: 1.1rem;
+            text-align: center;
+            position: relative;
+            padding-top: 1rem;
+        }
+
+        /* Contact Form Styles */
+        .contact-section {
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(10,10,10,0.95), rgba(30,30,30,0.95));
+        }
+
+        .contact-form-wrapper {
+            position: relative;
+            z-index: 2;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 0;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group label {
+            position: absolute;
+            right: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-group.message label {
+            top: 0.8rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4ECDC4;
+            box-shadow: 0 0 10px rgba(78,205,196,0.1);
+        }
+
+        .form-group input:focus + label,
+        .form-group textarea:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            transform: translateY(-2rem) scale(0.9);
+            color: #4ECDC4;
+        }
+
+        .submit-button {
+            grid-column: 1 / -1;
+            padding: 0.8rem;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78,205,196,0.2);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.04);
+        }
+
+        .contact-info-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #4ECDC4;
+        }
+
+        .contact-info-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #fff;
+        }
+
+        .contact-info-text {
+            color: #e2e8f0;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-form-wrapper {
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+
+            .contact-section {
+                padding: 2rem 0;
+            }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(78, 205, 196, 0.1);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-dot:hover::before {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .nav-dot.active {
+            background: #4ECDC4;
+            transform: scale(1.5);
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-dots {
+                display: none;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .modal-image {
+                height: 250px;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            position: relative;
+            transform: translateY(-30px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            background-size: 200% 100%;
+            animation: gradientMove 3s linear infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2.5rem;
+            cursor: pointer;
+            padding: 0.8rem;
+            transition: all 0.4s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateZ(35px);
+        }
+
+        .modal-close:hover {
+            color: #4ECDC4;
+            transform: rotate(90deg) translateZ(45px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-description {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .modal-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .modal-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            font-size: 1rem;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-feature:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(-10px);
+        }
+
+        .modal-feature::before {
+            content: "•";
+            color: #4ECDC4;
+            margin-left: 0.8rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .modal-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            background-size: 200% 100%;
+            animation: gradientMove 3s linear infinite;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Achievement Card Styles */
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .achievement-image {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .achievement-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .achievement-card:hover .achievement-image img {
+            transform: scale(1.1);
+        }
+
+        .achievement-overlay {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(78, 205, 196, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+
+        .achievement-content {
+            padding: 1.5rem;
+        }
+
+        .achievement-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-description {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .achievement-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #4ECDC4;
+        }
+
+        .achievement-category,
+        .achievement-place {
+            background: rgba(78, 205, 196, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .achievement-image {
+                height: 180px;
+            }
+            
+            .achievement-content {
+                padding: 1.2rem;
+            }
+        }
+
+        /* Testimonials Swiper Styles */
+        .testimonials-wrapper {
+            position: relative;
+            padding: 3rem 4rem;
+            overflow: hidden;
+        }
+
+        .testimonialSwiper {
+            overflow: visible;
+            padding: 2rem 0;
+        }
+
+        .swiper-slide {
+            opacity: 0.4;
+            transform: scale(0.8);
+            transition: all 0.5s ease;
+        }
+
+        .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: visible;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .testimonial-quote {
+            position: absolute;
+            top: -30px;
+            right: 30px;
+            font-size: 120px;
+            font-family: serif;
+            color: rgba(78, 205, 196, 0.1);
+            line-height: 1;
+            pointer-events: none;
+            transform: translateZ(20px);
+        }
+
+        .testimonial-image-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .testimonial-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 3px solid #4ECDC4;
+            transition: all 0.4s ease;
+            transform: translateZ(30px);
+        }
+
+        .testimonial-image-bg {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 1;
+            transition: all 0.4s ease;
+            transform: translateZ(20px);
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg) translateZ(20px); }
+            100% { transform: rotate(360deg) translateZ(20px); }
+        }
+
+        .testimonial-content {
+            text-align: center;
+            transform: translateZ(10px);
+        }
+
+        .testimonial-text {
+            color: #e2e8f0;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+            transform: translateZ(15px);
+        }
+
+        .testimonial-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transform: translateZ(20px);
+        }
+
+        .testimonial-author {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Swiper Navigation Styles */
+        .swiper-button-next,
+        .swiper-button-prev {
+            width: 50px;
+            height: 50px;
+            background: rgba(78, 205, 196, 0.1);
+            border-radius: 50%;
+            color: #4ECDC4;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(78, 205, 196, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Swiper Pagination Styles */
+        .swiper-pagination {
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .swiper-pagination-bullet {
+            width: 30px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 1;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #4ECDC4;
+            width: 50px;
+        }
+
+        /* Hover Effects */
+        .swiper-slide-active .testimonial-card {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .swiper-slide-active .testimonial-image-bg {
+            transform: scale(1.2) translateZ(20px);
+            opacity: 0.2;
+        }
+
+        .swiper-slide-active .testimonial-avatar {
+            transform: scale(1.1) translateZ(30px);
+            border-color: #FF6B6B;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-wrapper {
+                padding: 1rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .testimonial-image-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+
+            .swiper-pagination-bullet {
+                width: 20px;
+                height: 4px;
+            }
+
+            .swiper-pagination-bullet-active {
+                width: 40px;
+            }
+        }
+
+        .registration-form {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .registration-form .form-group {
+            position: relative;
+            margin-bottom: 0;
+        }
+
+        .registration-form .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .registration-form input,
+        .registration-form textarea,
+        .registration-form select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .registration-form select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.5l-6-6h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 0.8rem center;
+            padding-left: 2rem;
+        }
+
+        .registration-form select option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .registration-form label {
+            position: absolute;
+            right: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .registration-form textarea ~ label {
+            top: 0.8rem;
+            transform: none;
+        }
+
+        .registration-form input:focus,
+        .registration-form textarea:focus,
+        .registration-form select:focus {
+            outline: none;
+            border-color: #4ECDC4;
+            box-shadow: 0 0 10px rgba(78,205,196,0.1);
+        }
+
+        .registration-form input:focus + label,
+        .registration-form textarea:focus + label,
+        .registration-form select:focus + label,
+        .registration-form input:not(:placeholder-shown) + label,
+        .registration-form textarea:not(:placeholder-shown) + label,
+        .registration-form select:not(:placeholder-shown) + label {
+            transform: translateY(-2rem) scale(0.9);
+            color: #4ECDC4;
+        }
+
+        .registration-form .submit-button {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .hero-text {
+            text-align: right;
+        }
+
+        .hero-avatar {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(78, 205, 196, 0.3);
+            box-shadow: 0 0 30px rgba(78, 205, 196, 0.2);
+        }
+
+        .avatar-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .avatar-wrapper:hover .avatar-image {
+            transform: scale(1.1);
+        }
+
+        .avatar-bg {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: rotate 10s linear infinite;
+        }
+
+        .avatar-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(78, 205, 196, 0.2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-avatar {
+                width: 300px;
+                height: 300px;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" data-section="hero"></div>
+        <div class="nav-dot" data-section="programs"></div>
+        <div class="nav-dot" data-section="stats"></div>
+        <div class="nav-dot" data-section="achievements"></div>
+        <div class="nav-dot" data-section="testimonials"></div>
+        <div class="nav-dot" data-section="contact"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title" data-aos="fade-up">علی محمدی</h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">مربی حرفه‌ای بدنسازی و فیتنس</p>
+                
+                <div class="schedule-section" data-aos="fade-up" data-aos-delay="600">
+                    <div class="schedule-column">
+                        <h3 class="schedule-title">زمان‌های تمرین بانوان</h3>
+                        <ul class="schedule-list">
+                            <li class="schedule-item">
+                                <span class="schedule-day">شنبه تا چهارشنبه</span>
+                                <span class="schedule-time">8:00 - 14:00</span>
+                            </li>
+                            <li class="schedule-item">
+                                <span class="schedule-day">پنجشنبه</span>
+                                <span class="schedule-time">8:00 - 13:00</span>
+                            </li>
+                            <li class="schedule-item">
+                                <span class="schedule-day">جمعه</span>
+                                <span class="schedule-time">تعطیل</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="schedule-column">
+                        <h3 class="schedule-title">زمان‌های تمرین آقایان</h3>
+                        <ul class="schedule-list">
+                            <li class="schedule-item">
+                                <span class="schedule-day">شنبه تا چهارشنبه</span>
+                                <span class="schedule-time">14:00 - 22:00</span>
+                            </li>
+                            <li class="schedule-item">
+                                <span class="schedule-day">پنجشنبه</span>
+                                <span class="schedule-time">14:00 - 20:00</span>
+                            </li>
+                            <li class="schedule-item">
+                                <span class="schedule-day">جمعه</span>
+                                <span class="schedule-time">تعطیل</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-avatar" data-aos="fade-left" data-aos-delay="400">
+                <div class="avatar-wrapper">
+                    <img src="./assets/img/fitness/1.jpg" alt="علی محمدی" class="avatar-image">
+                    <div class="avatar-bg"></div>
+                    <div class="avatar-decoration"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="section bg-gray-900">
+        <div class="container">
+            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">برنامه‌های تمرینی</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Program Card 1 -->
+                <div class="program-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="./assets/img/fitness/7.jpg" alt="برنامه عضله‌سازی" class="program-image">
+                    <div class="program-content">
+                        <h3 class="program-title">برنامه عضله‌سازی</h3>
+                        <p class="program-description">برنامه‌ای جامع برای افزایش حجم عضلات و قدرت بدنی</p>
+                        <ul class="program-features">
+                            <li class="program-feature">تمرینات 3 روز در هفته</li>
+                            <li class="program-feature">برنامه تغذیه اختصاصی</li>
+                            <li class="program-feature">پشتیبانی 24/7</li>
+                        </ul>
+                        <a href="#" class="cta-button">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+
+                <!-- Program Card 2 -->
+                <div class="program-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="./assets/img/fitness/6.jpg" alt="برنامه کاهش وزن" class="program-image">
+                    <div class="program-content">
+                        <h3 class="program-title">برنامه کاهش وزن</h3>
+                        <p class="program-description">برنامه‌ای موثر برای کاهش وزن و چربی‌سوزی</p>
+                        <ul class="program-features">
+                            <li class="program-feature">تمرینات هوازی و قدرتی</li>
+                            <li class="program-feature">رژیم غذایی متعادل</li>
+                            <li class="program-feature">نظارت مستمر</li>
+                        </ul>
+                        <a href="#" class="cta-button">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+
+                <!-- Program Card 3 -->
+                <div class="program-card" data-aos="fade-up" data-aos-delay="600">
+                    <img src="./assets/img/fitness/5.jpg" alt="برنامه فیتنس" class="program-image">
+                    <div class="program-content">
+                        <h3 class="program-title">برنامه فیتنس</h3>
+                        <p class="program-description">برنامه‌ای برای تناسب اندام و سلامت عمومی</p>
+                        <ul class="program-features">
+                            <li class="program-feature">تمرینات متنوع</li>
+                            <li class="program-feature">تغذیه سالم</li>
+                            <li class="program-feature">مشاوره شخصی</li>
+                        </ul>
+                        <a href="#" class="cta-button">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section">
+        <div class="container">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">مشتری موفق</div>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">سال تجربه</div>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="600">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">رضایت مشتریان</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section bg-gray-900">
+        <div class="container">
+            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">افتخارات و مسابقات</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Achievement Card 1 -->
+                <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="achievement-image">
+                        <img src="./assets/img/fitness/3.jpg" alt="قهرمانی مسابقات بدنسازی">
+                        <div class="achievement-overlay">
+                            <span class="achievement-year">1402</span>
+                        </div>
+                    </div>
+                    <div class="achievement-content">
+                        <h3 class="achievement-title">قهرمانی مسابقات بدنسازی</h3>
+                        <p class="achievement-description">مقام اول مسابقات بدنسازی استان تهران</p>
+                        <div class="achievement-details">
+                            <span class="achievement-category">بدنسازی</span>
+                            <span class="achievement-place">تهران</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement Card 2 -->
+                <div class="achievement-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="achievement-image">
+                        <img src="./assets/img/fitness/4.jpg" alt="نایب قهرمانی مسابقات فیتنس">
+                        <div class="achievement-overlay">
+                            <span class="achievement-year">1401</span>
+                        </div>
+                    </div>
+                    <div class="achievement-content">
+                        <h3 class="achievement-title">نایب قهرمانی مسابقات فیتنس</h3>
+                        <p class="achievement-description">مقام دوم مسابقات فیتنس کشور</p>
+                        <div class="achievement-details">
+                            <span class="achievement-category">فیتنس</span>
+                            <span class="achievement-place">کشوری</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement Card 3 -->
+                <div class="achievement-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="achievement-image">
+                        <img src="./assets/img/fitness/5.jpg" alt="مقام سوم مسابقات پاورلیفتینگ">
+                        <div class="achievement-overlay">
+                            <span class="achievement-year">1400</span>
+                        </div>
+                    </div>
+                    <div class="achievement-content">
+                        <h3 class="achievement-title">مقام سوم مسابقات پاورلیفتینگ</h3>
+                        <p class="achievement-description">مقام سوم مسابقات پاورلیفتینگ استان</p>
+                        <div class="achievement-details">
+                            <span class="achievement-category">پاورلیفتینگ</span>
+                            <span class="achievement-place">استانی</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section bg-gray-900">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">نظرات مشتریان</h2>
+            <div class="testimonials-wrapper" data-aos="fade-up">
+                <div class="swiper testimonialSwiper">
+                    <div class="swiper-wrapper">
+                        <!-- Testimonial 1 -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-image-wrapper">
+                                    <img src="https://i.pravatar.cc/150?img=1" alt="علی احمدی" class="testimonial-avatar">
+                                    <div class="testimonial-image-bg"></div>
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="testimonial-text">با برنامه‌های تمرینی علی، توانستم به اهدافم در زمینه کاهش وزن برسم. پشتیبانی عالی و برنامه‌های متنوع از ویژگی‌های کار با ایشان است.</p>
+                                    <div class="testimonial-info">
+                                        <h4 class="testimonial-author">علی احمدی</h4>
+                                        <span class="testimonial-role">برنامه کاهش وزن</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-image-wrapper">
+                                    <img src="https://i.pravatar.cc/150?img=2" alt="سارا محمدی" class="testimonial-avatar">
+                                    <div class="testimonial-image-bg"></div>
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="testimonial-text">تجربه همکاری با علی عالی بود. برنامه‌های تمرینی ایشان بسیار حرفه‌ای و متناسب با شرایط من بود.</p>
+                                    <div class="testimonial-info">
+                                        <h4 class="testimonial-author">سارا محمدی</h4>
+                                        <span class="testimonial-role">برنامه فیتنس</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-image-wrapper">
+                                    <img src="https://i.pravatar.cc/150?img=3" alt="محمد رضایی" class="testimonial-avatar">
+                                    <div class="testimonial-image-bg"></div>
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="testimonial-text">با برنامه عضله‌سازی علی، توانستم به حجم عضلانی مورد نظر خود برسم. مشاوره‌های تغذیه‌ای ایشان بسیار مفید بود.</p>
+                                    <div class="testimonial-info">
+                                        <h4 class="testimonial-author">محمد رضایی</h4>
+                                        <span class="testimonial-role">برنامه عضله‌سازی</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 4 -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-image-wrapper">
+                                    <img src="https://i.pravatar.cc/150?img=4" alt="مریم حسینی" class="testimonial-avatar">
+                                    <div class="testimonial-image-bg"></div>
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="testimonial-text">نتایج فوق‌العاده‌ای با برنامه تناسب اندام گرفتم. روش کار علی بسیار اصولی و حرفه‌ای است.</p>
+                                    <div class="testimonial-info">
+                                        <h4 class="testimonial-author">مریم حسینی</h4>
+                                        <span class="testimonial-role">برنامه تناسب اندام</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">تماس با من</h2>
+            <div class="contact-form-wrapper" data-aos="fade-up" data-aos-delay="200">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder=" " required>
+                        <label for="name">نام و نام خانوادگی</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder=" " required>
+                        <label for="email">ایمیل</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder=" " required>
+                        <label for="phone">شماره تماس</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" placeholder=" " required>
+                        <label for="subject">موضوع</label>
+                    </div>
+                    <div class="form-group full-width message">
+                        <textarea id="message" rows="4" placeholder=" " required></textarea>
+                        <label for="message">پیام شما</label>
+                    </div>
+                    <button type="submit" class="submit-button">
+                        <span>ارسال پیام</span>
+                    </button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="contact-info-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="contact-info-icon">📱</div>
+                    <h3 class="contact-info-title">تلفن تماس</h3>
+                    <p class="contact-info-text">۰۹۱۲۳۴۵۶۷۸۹</p>
+                </div>
+                <div class="contact-info-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="contact-info-icon">📧</div>
+                    <h3 class="contact-info-title">ایمیل</h3>
+                    <p class="contact-info-text">info@example.com</p>
+                </div>
+                <div class="contact-info-item" data-aos="fade-up" data-aos-delay="600">
+                    <div class="contact-info-icon">📍</div>
+                    <h3 class="contact-info-title">آدرس</h3>
+                    <p class="contact-info-text">تهران، خیابان ولیعصر</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Modal -->
+    <div class="modal" id="programModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">جزئیات برنامه تمرینی</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="" alt="" class="modal-image">
+                <p class="modal-description"></p>
+                <ul class="modal-features"></ul>
+                
+                <form class="registration-form" id="registrationForm">
+                    <h4 class="text-xl font-bold mb-4 mt-6">ثبت نام در برنامه</h4>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <input type="text" id="reg-name" placeholder=" " required>
+                            <label for="reg-name">نام و نام خانوادگی</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="reg-email" placeholder=" " required>
+                            <label for="reg-email">ایمیل</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="reg-phone" placeholder=" " required>
+                            <label for="reg-phone">شماره تماس</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="reg-time" required>
+                                <option value="">انتخاب کنید</option>
+                                <option value="9-11">۹ تا ۱۱ صبح</option>
+                                <option value="11-13">۱۱ تا ۱۳</option>
+                                <option value="14-16">۱۴ تا ۱۶</option>
+                                <option value="16-18">۱۶ تا ۱۸</option>
+                                <option value="18-20">۱۸ تا ۲۰</option>
+                            </select>
+                            <label for="reg-time">زمان ترجیحی مشاوره</label>
+                        </div>
+                        <div class="form-group full-width">
+                            <textarea id="reg-message" rows="3" placeholder=" "></textarea>
+                            <label for="reg-message">توضیحات اضافی (اختیاری)</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-button mt-4">
+                        <span>ثبت درخواست مشاوره</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Swiper
+            const testimonialSwiper = new Swiper('.testimonialSwiper', {
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                loop: true,
+                speed: 800,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                slidesPerView: 'auto',
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 2,
+                    slideShadows: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                on: {
+                    init: function() {
+                        setTimeout(() => {
+                            this.update();
+                        }, 500);
+                    }
+                }
+            });
+
+            // Add styles for slide sizing
+            const style = document.createElement('style');
+            style.textContent = `
+                .testimonialSwiper .swiper-slide {
+                    width: 300px;
+                    opacity: 0.4;
+                    transform: scale(0.8);
+                    transition: all 0.3s ease;
+                }
+                .testimonialSwiper .swiper-slide-active {
+                    opacity: 1;
+                    transform: scale(1.2);
+                }
+                .testimonialSwiper .swiper-slide-prev,
+                .testimonialSwiper .swiper-slide-next {
+                    opacity: 0.6;
+                    transform: scale(0.8);
+                }
+                @media (max-width: 768px) {
+                    .testimonialSwiper .swiper-slide {
+                        width: 250px;
+                    }
+                    .testimonialSwiper .swiper-slide-active {
+                        transform: scale(1.1);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Navigation Dots
+        const sections = document.querySelectorAll('section');
+        const dots = document.querySelectorAll('.nav-dot');
+
+        function updateActiveDot() {
+            const scrollPosition = window.scrollY;
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionTop + sectionHeight - 100) {
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[index].classList.add('active');
+                }
+            });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                sections[index].scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        window.addEventListener('scroll', updateActiveDot);
+        updateActiveDot();
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('پیام شما با موفقیت ارسال شد. در اسرع وقت با شما تماس خواهیم گرفت.');
+            this.reset();
+        });
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelector('.hero-section').style.backgroundPositionY = scrolled * 0.5 + 'px';
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('programModal');
+        const modalClose = modal.querySelector('.modal-close');
+        const programCards = document.querySelectorAll('.program-card');
+
+        const programDetails = {
+            'muscle-building': {
+                title: 'برنامه عضله‌سازی',
+                image: './assets/img/fitness/1.jpg',
+                description: 'برنامه‌ای جامع و تخصصی برای افزایش حجم عضلات و قدرت بدنی. این برنامه شامل تمرینات متنوع و برنامه تغذیه اختصاصی است.',
+                features: [
+                    'تمرینات 3 روز در هفته با تمرکز بر گروه‌های عضلانی مختلف',
+                    'برنامه تغذیه اختصاصی با محاسبه دقیق کالری و پروتئین',
+                    'پشتیبانی 24/7 برای پاسخگویی به سوالات',
+                    'برنامه‌ریزی دوره‌ای برای پیشرفت مستمر',
+                    'تکنیک‌های پیشرفته برای افزایش حجم عضلات',
+                    'راهنمایی برای استفاده از مکمل‌های ورزشی'
+                ]
+            },
+            'weight-loss': {
+                title: 'برنامه کاهش وزن',
+                image: './assets/img/fitness/2.jpg',
+                description: 'برنامه‌ای موثر برای کاهش وزن و چربی‌سوزی با ترکیبی از تمرینات هوازی و قدرتی.',
+                features: [
+                    'تمرینات هوازی و قدرتی برای چربی‌سوزی موثر',
+                    'رژیم غذایی متعادل و کم کالری',
+                    'نظارت مستمر بر پیشرفت',
+                    'برنامه تمرینی متنوع و جذاب',
+                    'راهنمایی برای تغذیه سالم',
+                    'مشاوره برای تغییر سبک زندگی'
+                ]
+            },
+            'fitness': {
+                title: 'برنامه فیتنس',
+                image: './assets/img/fitness/3.jpg',
+                description: 'برنامه‌ای جامع برای تناسب اندام و سلامت عمومی با تمرینات متنوع و برنامه تغذیه سالم.',
+                features: [
+                    'تمرینات متنوع و جذاب',
+                    'تغذیه سالم و متعادل',
+                    'مشاوره شخصی',
+                    'برنامه تمرینی انعطاف‌پذیر',
+                    'تمرینات گروهی و انفرادی',
+                    'راهنمایی برای سبک زندگی سالم'
+                ]
+            }
+        };
+
+        programCards.forEach((card, index) => {
+            const programType = Object.keys(programDetails)[index];
+            const details = programDetails[programType];
+            
+            card.querySelector('.cta-button').addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.querySelector('.modal-title').textContent = details.title;
+                modal.querySelector('.modal-image').src = details.image;
+                modal.querySelector('.modal-image').alt = details.title;
+                modal.querySelector('.modal-description').textContent = details.description;
+                
+                const featuresList = modal.querySelector('.modal-features');
+                featuresList.innerHTML = '';
+                details.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.className = 'modal-feature';
+                    li.textContent = feature;
+                    featuresList.appendChild(li);
+                });
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Form submission handler for registration
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('reg-name').value,
+                email: document.getElementById('reg-email').value,
+                phone: document.getElementById('reg-phone').value,
+                time: document.getElementById('reg-time').value,
+                message: document.getElementById('reg-message').value,
+                program: modal.querySelector('.modal-title').textContent
+            };
+
+            // Here you would typically send this data to your server
+            console.log('Registration Data:', formData);
+            
+            // Show success message
+            alert('درخواست شما با موفقیت ثبت شد. به زودی برای هماهنگی زمان مشاوره با شما تماس خواهیم گرفت.');
+            
+            // Reset form and close modal
+            this.reset();
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    </script>
+</body>
+</html>

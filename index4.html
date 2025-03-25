@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پروفایل من</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --text-primary: #fff;
+            --text-secondary: #94a3b8;
+            --accent-color: #FF6B6B;
+            --accent-color-2: #4ECDC4;
+        }
+
+        [data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #ef4444;
+            --accent-color-2: #06b6d4;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+            position: relative;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(var(--accent-color), 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(var(--accent-color-2), 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            transition: background 0.3s ease;
+        }
+        .glass-effect {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+        .glass-effect:hover {
+            background: var(--glass-bg);
+            border-color: var(--glass-border);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-color-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .gradient-border {
+            position: relative;
+            border: none;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-color-2));
+            border-radius: inherit;
+            z-index: -1;
+            filter: blur(8px);
+            opacity: 0.7;
+        }
+        .gradient-border:hover::before {
+            opacity: 1;
+            filter: blur(12px);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .fixed-sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            background: var(--glass-bg);
+        }
+        .fixed-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+        .main-content {
+            margin-right: 40%;
+            width: 60%;
+            height: 100vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            background: var(--glass-bg);
+        }
+        .main-content::-webkit-scrollbar {
+            display: none;
+        }
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section.hidden {
+            display: none;
+        }
+        .menu-link {
+            position: relative;
+            color: var(--text-secondary);
+        }
+        .menu-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-color-2));
+            transition: width 0.3s ease;
+        }
+        .menu-link:hover::after,
+        .menu-link.active::after {
+            width: 100%;
+        }
+        .menu-link.active {
+            color: var(--text-primary);
+        }
+        .swiper {
+            width: 100%;
+            padding: 20px 0 40px;
+        }
+        .swiper-slide {
+            height: auto;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+        .swiper-slide-active {
+            opacity: 1;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--accent-color) !important;
+            background: var(--glass-bg);
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: var(--glass-bg);
+            transform: scale(1.1);
+        }
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px !important;
+        }
+        .swiper-pagination-bullet {
+            background: var(--accent-color) !important;
+            opacity: 0.5;
+            width: 8px !important;
+            height: 8px !important;
+            transition: all 0.3s ease;
+        }
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        .text-gray-400 {
+            color: var(--text-secondary);
+        }
+        .text-gray-300 {
+            color: var(--text-primary);
+        }
+        .bg-white\/5 {
+            background: var(--glass-bg);
+        }
+        .border-white\/10 {
+            border-color: var(--glass-border);
+        }
+        .focus\:border-\[#FF6B6B\]:focus {
+            border-color: var(--accent-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .menu-items {
+                display: none;
+            }
+
+            .top-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 40;
+                background: var(--glass-bg);
+                backdrop-filter: blur(10px);
+            }
+
+            .content-sections {
+                padding-top: 60px;
+            }
+
+            .fixed-sidebar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                max-width: 400px;
+                height: 100vh;
+                z-index: 50;
+                transition: right 0.3s ease;
+                overflow-y: auto;
+            }
+
+            .fixed-sidebar.active {
+                right: 0;
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(4px);
+                z-index: 40;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-content {
+                margin-right: 0;
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .menu-items {
+                display: flex;
+            }
+        }
+
+        /* Close Button Styles */
+        .sidebar-close {
+            display: none;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 51;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-close:hover {
+            background: var(--glass-bg);
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar-close {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .content-sections {
+                padding-bottom: 80px;
+            }
+
+            .menu-link {
+                color: var(--text-secondary);
+                transition: all 0.3s ease;
+            }
+
+            .menu-link.active {
+                color: var(--accent-color);
+            }
+
+            .menu-link i {
+                transition: all 0.3s ease;
+            }
+
+            .menu-link.active i {
+                color: var(--accent-color);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .menu-link::after {
+                content: '';
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: linear-gradient(45deg, var(--accent-color), var(--accent-color-2));
+                transition: width 0.3s ease;
+            }
+
+            .menu-link:hover::after,
+            .menu-link.active::after {
+                width: 100%;
+            }
+
+            .menu-link.active {
+                color: var(--text-primary);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar-overlay"></div>
+    <div class="flex">
+        <!-- Right Side - Personal Info & Resume -->
+        <div class="fixed-sidebar bg-gray-900/50 p-6">
+            <button class="sidebar-close">
+                <i class="bi bi-x-lg text-xl"></i>
+            </button>
+            <!-- Profile Header -->
+            <div class="text-center mb-12">
+                <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-2 border-white/10">
+                    <img src="https://via.placeholder.com/150" alt="Profile" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-xl font-medium text-white">محمد یازرلو</h1>
+                <p class="text-gray-400 text-sm mt-1">توسعه‌دهنده فرانت‌اند</p>
+                <div class="flex justify-center space-x-4 space-x-reverse mt-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="bi bi-github text-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="bi bi-linkedin text-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="bi bi-twitter text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Info -->
+            <div class="space-y-4 mb-8">
+                <div class="flex items-center text-sm text-gray-400">
+                    <i class="bi bi-geo-alt ml-2"></i>
+                    <span>تهران، ایران</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-400">
+                    <i class="bi bi-envelope ml-2"></i>
+                    <span>example@email.com</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-400">
+                    <i class="bi bi-telephone ml-2"></i>
+                    <span>+98 123 456 7890</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-400">
+                    <i class="bi bi-calendar ml-2"></i>
+                    <span>3 سال تجربه</span>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="space-y-4 mb-8">
+                <div>
+                    <div class="flex justify-between text-sm text-gray-400 mb-1">
+                        <span>فارسی</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="w-full bg-white/5 rounded-full h-1">
+                        <div class="bg-white/20 h-1 rounded-full" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm text-gray-400 mb-1">
+                        <span>انگلیسی</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="w-full bg-white/5 rounded-full h-1">
+                        <div class="bg-white/20 h-1 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download Resume -->
+            <a href="#" class="flex items-center justify-center py-2.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm">
+                <i class="bi bi-download ml-2"></i>
+                <span>دانلود رزومه</span>
+            </a>
+        </div>
+
+        <!-- Left Side - Portfolio Content -->
+        <div class="main-content bg-gray-800/50 p-8">
+            <!-- Top Menu -->
+            <div class="glass-effect p-4 rounded-xl mb-12">
+                <div class="flex items-center justify-between">
+
+                    <div class="hidden lg:flex items-center space-x-6 space-x-reverse">
+                        <a href="#" class="menu-link active" data-section="home">خانه</a>
+                        <a href="#" class="menu-link" data-section="projects">پروژه‌ها</a>
+                        <a href="#" class="menu-link" data-section="skills">مهارت‌ها</a>
+                        <a href="#" class="menu-link" data-section="pricing">قیمت‌ها</a>
+                        <a href="#" class="menu-link" data-section="articles">مقالات</a>
+                        <a href="#" class="menu-link" data-section="contact">تماس</a>
+                    </div>
+
+                    <div class="flex items-center space-x-4 space-x-reverse">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="bi bi-search text-lg"></i>
+                        </a>
+                        <button id="theme-toggle" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="bi bi-moon text-lg"></i>
+                        </button>
+                    </div>
+                    <!-- Desktop Menu -->
+                    
+                    <!-- Mobile Menu Button -->
+                    <button class="menu-toggle text-gray-400 hover:text-white transition-colors lg:hidden">
+                        <i class="bi bi-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-gray-900/50 backdrop-blur-lg border-t border-white/10 p-4 z-50">
+                <div class="flex justify-around items-center">
+                    <a href="#" class="menu-link active flex flex-col items-center" data-section="home">
+                        <i class="bi bi-house text-xl mb-1"></i>
+                        <span class="text-xs">خانه</span>
+                    </a>
+                    <a href="#" class="menu-link flex flex-col items-center" data-section="projects">
+                        <i class="bi bi-grid text-xl mb-1"></i>
+                        <span class="text-xs">پروژه‌ها</span>
+                    </a>
+                    <a href="#" class="menu-link flex flex-col items-center" data-section="skills">
+                        <i class="bi bi-code-square text-xl mb-1"></i>
+                        <span class="text-xs">مهارت‌ها</span>
+                    </a>
+                    <a href="#" class="menu-link flex flex-col items-center" data-section="pricing">
+                        <i class="bi bi-tag text-xl mb-1"></i>
+                        <span class="text-xs">قیمت‌ها</span>
+                    </a>
+                    <a href="#" class="menu-link flex flex-col items-center" data-section="articles">
+                        <i class="bi bi-newspaper text-xl mb-1"></i>
+                        <span class="text-xs">مقالات</span>
+                    </a>
+                    <a href="#" class="menu-link flex flex-col items-center" data-section="contact">
+                        <i class="bi bi-envelope text-xl mb-1"></i>
+                        <span class="text-xs">تماس</span>
+                    </a>
+                </div>
+            </div>
+
+            
+
+            <!-- Content Sections -->
+            <div class="content-sections">
+                <!-- Home Section -->
+                <div class="section active" id="home">
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl font-bold mb-4 gradient-text">به پورتفولیوی من خوش آمدید</h1>
+                        <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-12">من یک توسعه‌دهنده فرانت‌اند هستم که در ایجاد تجربه‌های کاربری زیبا و کارآمد تخصص دارم.</p>
+                        
+                        <!-- Skills Grid in Home -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                            <div class="glass-effect p-4 rounded-xl">
+                                <div class="flex items-center mb-3">
+                                    <i class="bi bi-code-square text-xl text-[#FF6B6B] ml-2"></i>
+                                    <h3 class="text-lg font-medium">توسعه وب</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm">React, Vue.js, Next.js, TypeScript</p>
+                            </div>
+                            <div class="glass-effect p-4 rounded-xl">
+                                <div class="flex items-center mb-3">
+                                    <i class="bi bi-phone text-xl text-[#FF6B6B] ml-2"></i>
+                                    <h3 class="text-lg font-medium">توسعه موبایل</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm">React Native, Flutter, Swift</p>
+                            </div>
+                            <div class="glass-effect p-4 rounded-xl">
+                                <div class="flex items-center mb-3">
+                                    <i class="bi bi-palette text-xl text-[#FF6B6B] ml-2"></i>
+                                    <h3 class="text-lg font-medium">طراحی UI/UX</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm">Figma, Adobe XD, Sketch</p>
+                            </div>
+                            <div class="glass-effect p-4 rounded-xl">
+                                <div class="flex items-center mb-3">
+                                    <i class="bi bi-server text-xl text-[#FF6B6B] ml-2"></i>
+                                    <h3 class="text-lg font-medium">بک‌اند</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm">Node.js, Express, MongoDB</p>
+                            </div>
+                            <div class="glass-effect p-4 rounded-xl">
+                                <div class="flex items-center mb-3">
+                                    <i class="bi bi-tools text-xl text-[#FF6B6B] ml-2"></i>
+                                    <h3 class="text-lg font-medium">ابزارها</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm">Git, Docker, AWS</p>
+                            </div>
+                            <div class="glass-effect p-4 rounded-xl">
+                                <div class="flex items-center mb-3">
+                                    <i class="bi bi-graph-up text-xl text-[#FF6B6B] ml-2"></i>
+                                    <h3 class="text-lg font-medium">بهینه‌سازی</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm">SEO, Performance, Analytics</p>
+                            </div>
+                        </div>
+
+                        <!-- Testimonials Section -->
+                        <div class="mt-24">
+                            <h2 class="text-2xl font-bold mb-12 gradient-text text-center">نظرات مشتریان</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                                <!-- Testimonial 1 -->
+                                <div class="glass-effect p-6 rounded-xl">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 rounded-full overflow-hidden ml-3">
+                                            <img src="https://via.placeholder.com/100" alt="مشتری" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium">علی محمدی</h4>
+                                            <p class="text-sm text-gray-400">مدیر عامل شرکت فناوری</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-300 text-sm">"تجربه همکاری با تیم عالی بود. پروژه ما در زمان مشخص شده و با کیفیت بالا تحویل داده شد."</p>
+                                    <div class="flex mt-4">
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 2 -->
+                                <div class="glass-effect p-6 rounded-xl">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 rounded-full overflow-hidden ml-3">
+                                            <img src="https://via.placeholder.com/100" alt="مشتری" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium">زهرا احمدی</h4>
+                                            <p class="text-sm text-gray-400">کارشناس محصول</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-300 text-sm">"طراحی رابط کاربری بسیار کاربرپسند و مدرن بود. مشتریان ما از تجربه کاربری راضی هستند."</p>
+                                    <div class="flex mt-4">
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                        <i class="bi bi-star-fill text-yellow-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="section hidden" id="projects">
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl font-bold mb-4 gradient-text">پروژه‌های برتر</h1>
+                        <p class="text-gray-400 text-lg max-w-2xl mx-auto">نمونه کارهای من در حوزه‌های مختلف توسعه وب و طراحی رابط کاربری</p>
+                    </div>
+                    
+                    <!-- Project Categories Tabs -->
+                    <div class="flex flex-wrap justify-center gap-3 mb-12">
+                        <button class="project-tab active px-6 py-2.5 rounded-full glass-effect text-sm transition-all duration-300 hover:bg-white/10" data-category="all">
+                            همه پروژه‌ها
+                        </button>
+                        <button class="project-tab px-6 py-2.5 rounded-full glass-effect text-sm transition-all duration-300 hover:bg-white/10" data-category="web">
+                            توسعه وب
+                        </button>
+                        <button class="project-tab px-6 py-2.5 rounded-full glass-effect text-sm transition-all duration-300 hover:bg-white/10" data-category="mobile">
+                            توسعه موبایل
+                        </button>
+                        <button class="project-tab px-6 py-2.5 rounded-full glass-effect text-sm transition-all duration-300 hover:bg-white/10" data-category="ui">
+                            طراحی UI/UX
+                        </button>
+                    </div>
+
+                    <!-- Projects Swiper -->
+                    <div class="swiper projects-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Project 1 -->
+                            <div class="swiper-slide">
+                                <div class="glass-effect rounded-2xl overflow-hidden group h-full transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FF6B6B]/10">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/400x300" alt="پروژه 1" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                        <div class="absolute top-4 right-4">
+                                            <span class="text-xs bg-[#FF6B6B] px-3 py-1.5 rounded-full text-white font-medium">توسعه وب</span>
+                                        </div>
+                                        <div class="absolute bottom-4 right-4">
+                                            <span class="text-xs bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white">React</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 gradient-text group-hover:opacity-90 transition-opacity line-clamp-2">سیستم مدیریت محتوا</h3>
+                                        <p class="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">یک سیستم مدیریت محتوای مدرن با قابلیت‌های پیشرفته و رابط کاربری زیبا</p>
+                                        <div class="flex items-center justify-between">
+                                            <a href="#" class="text-sm gradient-text hover:opacity-80 transition-opacity flex items-center group">
+                                                مشاهده پروژه
+                                                <i class="bi bi-arrow-left mr-1 transform transition-transform group-hover:translate-x-1"></i>
+                                            </a>
+                                            <div class="flex items-center text-yellow-400">
+                                                <i class="bi bi-star-fill text-sm"></i>
+                                                <span class="text-xs mr-1">4.9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Project 2 -->
+                            <div class="swiper-slide">
+                                <div class="glass-effect rounded-2xl overflow-hidden group h-full transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FF6B6B]/10">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/400x300" alt="پروژه 2" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                        <div class="absolute top-4 right-4">
+                                            <span class="text-xs bg-[#4ECDC4] px-3 py-1.5 rounded-full text-white font-medium">توسعه موبایل</span>
+                                        </div>
+                                        <div class="absolute bottom-4 right-4">
+                                            <span class="text-xs bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white">React Native</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 gradient-text group-hover:opacity-90 transition-opacity line-clamp-2">اپلیکیشن فروشگاهی</h3>
+                                        <p class="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">اپلیکیشن موبایل فروشگاهی با قابلیت پرداخت آنلاین و مدیریت سفارشات</p>
+                                        <div class="flex items-center justify-between">
+                                            <a href="#" class="text-sm gradient-text hover:opacity-80 transition-opacity flex items-center group">
+                                                مشاهده پروژه
+                                                <i class="bi bi-arrow-left mr-1 transform transition-transform group-hover:translate-x-1"></i>
+                                            </a>
+                                            <div class="flex items-center text-yellow-400">
+                                                <i class="bi bi-star-fill text-sm"></i>
+                                                <span class="text-xs mr-1">4.8</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Project 3 -->
+                            <div class="swiper-slide">
+                                <div class="glass-effect rounded-2xl overflow-hidden group h-full transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FF6B6B]/10">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/400x300" alt="پروژه 3" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                        <div class="absolute top-4 right-4">
+                                            <span class="text-xs bg-[#FF6B6B] px-3 py-1.5 rounded-full text-white font-medium">UI/UX</span>
+                                        </div>
+                                        <div class="absolute bottom-4 right-4">
+                                            <span class="text-xs bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white">Figma</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 gradient-text group-hover:opacity-90 transition-opacity line-clamp-2">طراحی رابط کاربری</h3>
+                                        <p class="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">طراحی رابط کاربری مدرن برای اپلیکیشن مدیریت پروژه با تمرکز بر UX</p>
+                                        <div class="flex items-center justify-between">
+                                            <a href="#" class="text-sm gradient-text hover:opacity-80 transition-opacity flex items-center group">
+                                                مشاهده پروژه
+                                                <i class="bi bi-arrow-left mr-1 transform transition-transform group-hover:translate-x-1"></i>
+                                            </a>
+                                            <div class="flex items-center text-yellow-400">
+                                                <i class="bi bi-star-fill text-sm"></i>
+                                                <span class="text-xs mr-1">4.7</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Project 4 -->
+                            <div class="swiper-slide">
+                                <div class="glass-effect rounded-2xl overflow-hidden group h-full transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FF6B6B]/10">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/400x300" alt="پروژه 4" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                        <div class="absolute top-4 right-4">
+                                            <span class="text-xs bg-[#4ECDC4] px-3 py-1.5 rounded-full text-white font-medium">توسعه وب</span>
+                                        </div>
+                                        <div class="absolute bottom-4 right-4">
+                                            <span class="text-xs bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white">Vue.js</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 gradient-text group-hover:opacity-90 transition-opacity line-clamp-2">پلتفرم آموزش آنلاین</h3>
+                                        <p class="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">سیستم آموزش آنلاین با قابلیت پخش ویدیو و آزمون‌های تعاملی</p>
+                                        <div class="flex items-center justify-between">
+                                            <a href="#" class="text-sm gradient-text hover:opacity-80 transition-opacity flex items-center group">
+                                                مشاهده پروژه
+                                                <i class="bi bi-arrow-left mr-1 transform transition-transform group-hover:translate-x-1"></i>
+                                            </a>
+                                            <div class="flex items-center text-yellow-400">
+                                                <i class="bi bi-star-fill text-sm"></i>
+                                                <span class="text-xs mr-1">4.9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="section hidden" id="skills">
+                    <h2 class="text-2xl font-bold mb-8 gradient-text">مهارت‌های تخصصی</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        <div class="glass-effect p-4 rounded-xl">
+                            <div class="flex items-center mb-3">
+                                <i class="bi bi-code-square text-xl text-[#FF6B6B] ml-2"></i>
+                                <h3 class="text-lg font-medium">توسعه وب</h3>
+                            </div>
+                            <p class="text-gray-400 text-sm">React, Vue.js, Next.js, TypeScript</p>
+                        </div>
+                        <div class="glass-effect p-4 rounded-xl">
+                            <div class="flex items-center mb-3">
+                                <i class="bi bi-phone text-xl text-[#FF6B6B] ml-2"></i>
+                                <h3 class="text-lg font-medium">توسعه موبایل</h3>
+                            </div>
+                            <p class="text-gray-400 text-sm">React Native, Flutter, Swift</p>
+                        </div>
+                        <div class="glass-effect p-4 rounded-xl">
+                            <div class="flex items-center mb-3">
+                                <i class="bi bi-palette text-xl text-[#FF6B6B] ml-2"></i>
+                                <h3 class="text-lg font-medium">طراحی UI/UX</h3>
+                            </div>
+                            <p class="text-gray-400 text-sm">Figma, Adobe XD, Sketch</p>
+                        </div>
+                        <div class="glass-effect p-4 rounded-xl">
+                            <div class="flex items-center mb-3">
+                                <i class="bi bi-server text-xl text-[#FF6B6B] ml-2"></i>
+                                <h3 class="text-lg font-medium">بک‌اند</h3>
+                            </div>
+                            <p class="text-gray-400 text-sm">Node.js, Express, MongoDB</p>
+                        </div>
+                        <div class="glass-effect p-4 rounded-xl">
+                            <div class="flex items-center mb-3">
+                                <i class="bi bi-tools text-xl text-[#FF6B6B] ml-2"></i>
+                                <h3 class="text-lg font-medium">ابزارها</h3>
+                            </div>
+                            <p class="text-gray-400 text-sm">Git, Docker, AWS</p>
+                        </div>
+                        <div class="glass-effect p-4 rounded-xl">
+                            <div class="flex items-center mb-3">
+                                <i class="bi bi-graph-up text-xl text-[#FF6B6B] ml-2"></i>
+                                <h3 class="text-lg font-medium">بهینه‌سازی</h3>
+                            </div>
+                            <p class="text-gray-400 text-sm">SEO, Performance, Analytics</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Section -->
+                <div class="section hidden" id="pricing">
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl font-bold mb-4 gradient-text">تعرفه‌های خدمات</h1>
+                        <p class="text-gray-400 text-lg max-w-2xl mx-auto">بسته‌های مختلف خدمات ما را بررسی کنید و مناسب‌ترین گزینه را انتخاب کنید.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        <!-- Basic Plan -->
+                        <div class="glass-effect p-8 rounded-xl text-center">
+                            <h3 class="text-xl font-bold mb-4">پایه</h3>
+                            <div class="text-3xl font-bold mb-6">
+                                <span class="text-[#FF6B6B]">۲</span>
+                                <span class="text-gray-400 text-lg">میلیون تومان</span>
+                            </div>
+                            <ul class="space-y-4 mb-8 text-right">
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>طراحی رابط کاربری</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>توسعه فرانت‌اند</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>پشتیبانی ۳ ماهه</span>
+                                </li>
+                            </ul>
+                            <button class="w-full py-2.5 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity">
+                                انتخاب پلن
+                            </button>
+                        </div>
+
+                        <!-- Pro Plan -->
+                        <div class="glass-effect p-8 rounded-xl text-center relative">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                <span class="bg-[#FF6B6B] text-white text-sm px-4 py-1 rounded-full">محبوب</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">حرفه‌ای</h3>
+                            <div class="text-3xl font-bold mb-6">
+                                <span class="text-[#FF6B6B]">۵</span>
+                                <span class="text-gray-400 text-lg">میلیون تومان</span>
+                            </div>
+                            <ul class="space-y-4 mb-8 text-right">
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>طراحی رابط کاربری</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>توسعه فرانت‌اند</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>توسعه بک‌اند</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>پشتیبانی ۶ ماهه</span>
+                                </li>
+                            </ul>
+                            <button class="w-full py-2.5 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity">
+                                انتخاب پلن
+                            </button>
+                        </div>
+
+                        <!-- Enterprise Plan -->
+                        <div class="glass-effect p-8 rounded-xl text-center">
+                            <h3 class="text-xl font-bold mb-4">سازمانی</h3>
+                            <div class="text-3xl font-bold mb-6">
+                                <span class="text-[#FF6B6B]">۱۰</span>
+                                <span class="text-gray-400 text-lg">میلیون تومان</span>
+                            </div>
+                            <ul class="space-y-4 mb-8 text-right">
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>طراحی رابط کاربری</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>توسعه فرانت‌اند</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>توسعه بک‌اند</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>بهینه‌سازی SEO</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bi bi-check-circle-fill text-[#FF6B6B] ml-2"></i>
+                                    <span>پشتیبانی ۱۲ ماهه</span>
+                                </li>
+                            </ul>
+                            <button class="w-full py-2.5 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity">
+                                انتخاب پلن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articles Section -->
+                <div class="section hidden" id="articles">
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl font-bold mb-4 gradient-text">آخرین مقالات</h1>
+                        <p class="text-gray-400 text-lg max-w-2xl mx-auto">مطالب آموزشی و تخصصی در حوزه توسعه وب و طراحی رابط کاربری</p>
+                    </div>
+                    <div class="swiper articles-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Article 1 -->
+                            <div class="swiper-slide">
+                                <div class="glass-effect rounded-2xl overflow-hidden group h-full transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FF6B6B]/10">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/400x200" alt="مقاله 1" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                        <div class="absolute top-4 right-4">
+                                            <span class="text-xs bg-[#FF6B6B] px-3 py-1.5 rounded-full text-white font-medium">فرانت‌اند</span>
+                                        </div>
+                                        <div class="absolute bottom-4 right-4">
+                                            <span class="text-xs bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white">۲ هفته پیش</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 gradient-text group-hover:opacity-90 transition-opacity line-clamp-2">بهترین فریم‌ورک‌های فرانت‌اند در سال 2024</h3>
+                                        <p class="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">مقایسه و بررسی بهترین فریم‌ورک‌های فرانت‌اند و انتخاب مناسب‌ترین گزینه برای پروژه‌های مختلف</p>
+                                        <div class="flex items-center justify-between">
+                                            <a href="#" class="text-sm gradient-text hover:opacity-80 transition-opacity flex items-center group">
+                                                ادامه مطلب
+                                                <i class="bi bi-arrow-left mr-1 transform transition-transform group-hover:translate-x-1"></i>
+                                            </a>
+                                            <div class="flex items-center text-yellow-400">
+                                                <i class="bi bi-star-fill text-sm"></i>
+                                                <span class="text-xs mr-1">4.9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Article 2 -->
+                            <div class="swiper-slide">
+                                <div class="glass-effect rounded-2xl overflow-hidden group h-full transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FF6B6B]/10">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/400x200" alt="مقاله 2" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                        <div class="absolute top-4 right-4">
+                                            <span class="text-xs bg-[#4ECDC4] px-3 py-1.5 rounded-full text-white font-medium">UI/UX</span>
+                                        </div>
+                                        <div class="absolute bottom-4 right-4">
+                                            <span class="text-xs bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white">۱ ماه پیش</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 gradient-text group-hover:opacity-90 transition-opacity line-clamp-2">اصول طراحی رابط کاربری مدرن</h3>
+                                        <p class="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">راهنمای کامل برای طراحی رابط‌های کاربری مدرن و جذاب با استفاده از آخرین تکنیک‌ها</p>
+                                        <div class="flex items-center justify-between">
+                                            <a href="#" class="text-sm gradient-text hover:opacity-80 transition-opacity flex items-center group">
+                                                ادامه مطلب
+                                                <i class="bi bi-arrow-left mr-1 transform transition-transform group-hover:translate-x-1"></i>
+                                            </a>
+                                            <div class="flex items-center text-yellow-400">
+                                                <i class="bi bi-star-fill text-sm"></i>
+                                                <span class="text-xs mr-1">4.8</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Article 3 -->
+                            <div class="swiper-slide">
+                                <div class="glass-effect rounded-2xl overflow-hidden group h-full transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FF6B6B]/10">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/400x200" alt="مقاله 3" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                        <div class="absolute top-4 right-4">
+                                            <span class="text-xs bg-[#FF6B6B] px-3 py-1.5 rounded-full text-white font-medium">بک‌اند</span>
+                                        </div>
+                                        <div class="absolute bottom-4 right-4">
+                                            <span class="text-xs bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white">۲ ماه پیش</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 gradient-text group-hover:opacity-90 transition-opacity line-clamp-2">معماری میکروسرویس</h3>
+                                        <p class="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">بررسی مزایا و معایب معماری میکروسرویس و نحوه پیاده‌سازی آن در پروژه‌های بزرگ</p>
+                                        <div class="flex items-center justify-between">
+                                            <a href="#" class="text-sm gradient-text hover:opacity-80 transition-opacity flex items-center group">
+                                                ادامه مطلب
+                                                <i class="bi bi-arrow-left mr-1 transform transition-transform group-hover:translate-x-1"></i>
+                                            </a>
+                                            <div class="flex items-center text-yellow-400">
+                                                <i class="bi bi-star-fill text-sm"></i>
+                                                <span class="text-xs mr-1">4.7</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Article 4 -->
+                            <div class="swiper-slide">
+                                <div class="glass-effect rounded-2xl overflow-hidden group h-full transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#FF6B6B]/10">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/400x200" alt="مقاله 4" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                        <div class="absolute top-4 right-4">
+                                            <span class="text-xs bg-[#4ECDC4] px-3 py-1.5 rounded-full text-white font-medium">DevOps</span>
+                                        </div>
+                                        <div class="absolute bottom-4 right-4">
+                                            <span class="text-xs bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white">۳ ماه پیش</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 gradient-text group-hover:opacity-90 transition-opacity line-clamp-2">CI/CD با GitHub Actions</h3>
+                                        <p class="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">راهنمای کامل پیاده‌سازی CI/CD با استفاده از GitHub Actions برای پروژه‌های مختلف</p>
+                                        <div class="flex items-center justify-between">
+                                            <a href="#" class="text-sm gradient-text hover:opacity-80 transition-opacity flex items-center group">
+                                                ادامه مطلب
+                                                <i class="bi bi-arrow-left mr-1 transform transition-transform group-hover:translate-x-1"></i>
+                                            </a>
+                                            <div class="flex items-center text-yellow-400">
+                                                <i class="bi bi-star-fill text-sm"></i>
+                                                <span class="text-xs mr-1">4.9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="section hidden" id="contact">
+                    <h2 class="text-2xl font-bold mb-8 gradient-text">تماس با من</h2>
+                    <div class="glass-effect p-8 rounded-xl">
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">نام</label>
+                                    <input type="text" class="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">ایمیل</label>
+                                    <input type="email" class="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">موضوع</label>
+                                <input type="text" class="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">پیام</label>
+                                <textarea rows="4" class="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity">
+                                ارسال پیام
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize all functionality when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Section Switching Functionality
+            const menuLinks = document.querySelectorAll('.menu-link');
+            const sections = document.querySelectorAll('.section');
+
+            menuLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and sections
+                    menuLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => {
+                        s.classList.remove('active');
+                        s.classList.add('hidden');
+                    });
+                    
+                    // Add active class to clicked link
+                    link.classList.add('active');
+                    
+                    // Show corresponding section with animation
+                    const sectionId = link.getAttribute('data-section');
+                    const targetSection = document.getElementById(sectionId);
+                    targetSection.classList.remove('hidden');
+                    // Trigger reflow
+                    targetSection.offsetHeight;
+                    targetSection.classList.add('active');
+                });
+            });
+
+            // Initialize first section
+            document.getElementById('home').classList.add('active');
+
+            // Mobile Sidebar Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.fixed-sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            const closeButton = document.querySelector('.sidebar-close');
+            const body = document.body;
+
+            function closeSidebar() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                body.style.overflow = '';
+            }
+
+            if (menuToggle && sidebar && overlay && closeButton) {
+                menuToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                    body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+                });
+
+                closeButton.addEventListener('click', closeSidebar);
+                overlay.addEventListener('click', closeSidebar);
+
+                // Close sidebar when clicking menu items
+                const sidebarLinks = document.querySelectorAll('.fixed-sidebar a');
+                sidebarLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 1024) {
+                            closeSidebar();
+                        }
+                    });
+                });
+            }
+
+            // Close sidebar on window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1024) {
+                    closeSidebar();
+                }
+            });
+
+            // Theme Toggle Functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                const themeIcon = themeToggle.querySelector('i');
+                
+                // Check for saved theme preference
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    document.documentElement.setAttribute('data-theme', savedTheme);
+                    updateThemeIcon(savedTheme);
+                }
+
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeIcon(newTheme);
+                });
+
+                function updateThemeIcon(theme) {
+                    themeIcon.className = theme === 'light' ? 'bi bi-sun text-lg' : 'bi bi-moon text-lg';
+                }
+            }
+
+            // Swiper Configuration
+            const swiperConfig = {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 1,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 2,
+                        spaceBetween: 30,
+                    },
+                    1280: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                },
+            };
+
+            // Initialize Swipers
+            if (document.querySelector('.projects-swiper')) {
+                new Swiper('.projects-swiper', swiperConfig);
+            }
+            if (document.querySelector('.articles-swiper')) {
+                new Swiper('.articles-swiper', swiperConfig);
+            }
+
+            // Project Tabs Functionality
+            const projectTabs = document.querySelectorAll('.project-tab');
+            const projectsSwiperWrapper = document.querySelector('.projects-swiper .swiper-wrapper');
+
+            if (projectTabs.length && projectsSwiperWrapper) {
+                projectTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        projectTabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        
+                        const category = tab.getAttribute('data-category');
+                        const slides = projectsSwiperWrapper.querySelectorAll('.swiper-slide');
+                        
+                        slides.forEach(slide => {
+                            const slideCategory = slide.querySelector('.bg-\\[\\#FF6B6B\\]').textContent.trim();
+                            if (category === 'all' || slideCategory === category) {
+                                slide.style.display = 'block';
+                            } else {
+                                slide.style.display = 'none';
+                            }
+                        });
+                        
+                        // Update Swiper
+                        const swiper = document.querySelector('.projects-swiper').swiper;
+                        if (swiper) {
+                            swiper.update();
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
