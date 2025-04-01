@@ -1,1180 +1,2474 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>پروفایل من</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <style>
-        @keyframes pageTransition {
-            0% {
-                transform: translateX(100%) scale(0.98) rotateY(0deg);
-                opacity: 0;
-                filter: blur(10px);
-            }
-            30% {
-                transform: translateX(30%) scale(0.99) rotateY(15deg);
-                opacity: 0.5;
-                filter: blur(5px);
-            }
-            70% {
-                transform: translateX(-30%) scale(0.99) rotateY(-15deg);
-                opacity: 0.5;
-                filter: blur(5px);
-            }
-            100% {
-                transform: translateX(-100%) scale(0.98) rotateY(0deg);
-                opacity: 0;
-                filter: blur(10px);
-            }
+      @keyframes pageTransition {
+        0% {
+          transform: translateX(100%) scale(0.98) rotateY(0deg);
+          opacity: 0;
+          filter: blur(10px);
         }
-        @keyframes pageExit {
-            0% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
+        30% {
+          transform: translateX(30%) scale(0.99) rotateY(15deg);
+          opacity: 0.5;
+          filter: blur(5px);
         }
-        .page-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-            background-size: 200% 200%;
-            animation: gradientBG 15s ease infinite;
-            z-index: 1000;
-            display: none;
-            pointer-events: none;
-            transform-origin: center;
-            will-change: transform, opacity, filter;
-            backdrop-filter: blur(5px);
-            perspective: 1000px;
-            transform-style: preserve-3d;
+        70% {
+          transform: translateX(-30%) scale(0.99) rotateY(-15deg);
+          opacity: 0.5;
+          filter: blur(5px);
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        100% {
+          transform: translateX(-100%) scale(0.98) rotateY(0deg);
+          opacity: 0;
+          filter: blur(10px);
         }
-        .page-transition.active {
-            display: block;
-            animation: pageTransition 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      @keyframes pageExit {
+        0% {
+          transform: translateX(0);
+          opacity: 1;
         }
-        body {
-            overflow: hidden;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
+        100% {
+          transform: translateX(-100%);
+          opacity: 0;
         }
+      }
+      .page-transition {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        background-size: 200% 200%;
+        animation: gradientBG 15s ease infinite;
+        z-index: 1000;
+        display: none;
+        pointer-events: none;
+        transform-origin: center;
+        will-change: transform, opacity, filter;
+        backdrop-filter: blur(5px);
+        perspective: 1000px;
+        transform-style: preserve-3d;
+      }
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .page-transition.active {
+        display: block;
+        animation: pageTransition 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      body {
+        overflow: hidden;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+      section {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        padding: 80px 0;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+        transform: translateX(100%) scale(0.98) rotateY(0deg);
+        will-change: transform, opacity, visibility;
+        backface-visibility: hidden;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+      }
+      section.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0) scale(1) rotateY(0deg);
+      }
+      @media (max-width: 768px) {
         section {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            padding: 80px 0;
-            opacity: 0;
-            visibility: hidden;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
-            transform: translateX(100%) scale(0.98) rotateY(0deg);
-            will-change: transform, opacity, visibility;
-            backface-visibility: hidden;
-            perspective: 1000px;
-            transform-style: preserve-3d;
+          padding: 60px 0 100px 0;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
-        section.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0) scale(1) rotateY(0deg);
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
         }
-        @media (max-width: 768px) {
-            section {
-                padding: 60px 0 100px 0;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-            }
+        50% {
+          transform: translateY(-20px) rotate(2deg);
         }
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg);
-            }
-            50% { 
-                transform: translateY(-20px) rotate(2deg);
-            }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
         }
-        @keyframes pulse {
-            0%, 100% { 
-                transform: scale(1) rotate(0deg);
-            }
-            50% { 
-                transform: scale(1.05) rotate(1deg);
-            }
+        50% {
+          transform: scale(1.05) rotate(1deg);
         }
-        @keyframes borderGlow {
-            0%, 100% { 
-                border-color: rgba(255, 107, 107, 0.5);
-                box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
-            }
-            50% { 
-                border-color: rgba(78, 205, 196, 0.5);
-                box-shadow: 0 0 30px rgba(78, 205, 196, 0.3);
-            }
+      }
+      @keyframes borderGlow {
+        0%,
+        100% {
+          border-color: rgba(255, 107, 107, 0.5);
+          box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
         }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+        50% {
+          border-color: rgba(78, 205, 196, 0.5);
+          box-shadow: 0 0 30px rgba(78, 205, 196, 0.3);
         }
-        .animate-pulse-slow {
-            animation: pulse 4s ease-in-out infinite;
-        }
-        .animate-border-glow {
-            animation: borderGlow 3s ease-in-out infinite;
-        }
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            transform-style: preserve-3d;
-            will-change: transform;
-        }
-        .glass-effect:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px) scale(1.02) rotateX(2deg);
-            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
-        }
-        .dark .glass-effect {
-            background: rgba(0, 0, 0, 0.2);
-        }
-        .dark .glass-effect:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
-        .nav-link {
-            position: relative;
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s ease;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
-            background-size: 200% 200%;
-            animation: gradientBG 3s ease infinite;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 80%;
-        }
-        .nav-link.active {
-            color: #FF6B6B;
-            font-weight: 600;
-        }
-        .gradient-text {
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #2C3E50);
-            background-size: 300% 300%;
-            animation: gradientBG 15s ease infinite;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .gradient-border {
-            position: relative;
-            border: none;
-        }
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #2C3E50);
-            background-size: 300% 300%;
-            animation: gradientBG 15s ease infinite;
-            border-radius: inherit;
-            z-index: -1;
-            filter: blur(8px);
-            opacity: 0.7;
-        }
-        .gradient-border:hover::before {
-            opacity: 1;
-            filter: blur(12px);
-        }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      .animate-pulse-slow {
+        animation: pulse 4s ease-in-out infinite;
+      }
+      .animate-border-glow {
+        animation: borderGlow 3s ease-in-out infinite;
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+      .glass-effect:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-5px) scale(1.02) rotateX(2deg);
+        box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+      }
+      .dark .glass-effect {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .dark .glass-effect:hover {
+        background: rgba(0, 0, 0, 0.3);
+      }
+      .nav-link {
+        position: relative;
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+        background-size: 200% 200%;
+        animation: gradientBG 3s ease infinite;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 80%;
+      }
+      .nav-link.active {
+        color: #ff6b6b;
+        font-weight: 600;
+      }
+      .gradient-text {
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #2c3e50);
+        background-size: 300% 300%;
+        animation: gradientBG 15s ease infinite;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .gradient-border {
+        position: relative;
+        border: none;
+      }
+      .gradient-border::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #2c3e50);
+        background-size: 300% 300%;
+        animation: gradientBG 15s ease infinite;
+        border-radius: inherit;
+        z-index: -1;
+        filter: blur(8px);
+        opacity: 0.7;
+      }
+      .gradient-border:hover::before {
+        opacity: 1;
+        filter: blur(12px);
+      }
+      #mobile-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(17, 24, 39, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      @media (min-width: 768px) {
         #mobile-menu {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(17, 24, 39, 0.95);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+          display: none !important;
         }
-        @media (min-width: 768px) {
-            #mobile-menu {
-                display: none !important;
-            }
+      }
+      @media (max-width: 767px) {
+        #mobile-menu {
+          display: block !important;
         }
-        @media (max-width: 767px) {
-            #mobile-menu {
-                display: block !important;
-            }
-        }
+      }
+
+      @media (max-width: 768px) {
+    section {
+        padding: 60px 0 120px 0; /* افزایش پدینگ پایین از 100px به 120px */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
     </style>
-</head>
-<body class="bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden">
+  </head>
+  <body
+    class="bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden"
+  >
     <!-- Navbar -->
     <nav class="fixed w-full z-50">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent">
-                    محمد یازرلو
-                </div>
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg glass-effect">
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+          <div
+            class="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent"
+          >
+            محمد یازرلو
+          </div>
+          <!-- Mobile Menu Button -->
+          <!-- <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg glass-effect">
                     <i class="bi bi-list text-2xl"></i>
-                </button>
-                <!-- Desktop Menu -->
-                <div id="desktop-menu" class="hidden md:block glass-effect rounded-full px-6 py-2 backdrop-blur-lg bg-gradient-to-r from-white/5 to-white/10 dark:from-black/5 dark:to-black/10 border border-white/20 dark:border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="flex items-center space-x-6 space-x-reverse">
-                        <a href="#home" class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300">خانه</a>
-                        <a href="#about" class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300">درباره من</a>
-                        <a href="#skills" class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300">مهارت‌ها</a>
-                        <a href="#projects" class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300">پروژه‌ها</a>
-                        <a href="#pricing" class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300">قیمت‌ها</a>
-                        <a href="#articles" class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300">مقالات</a>
-                        <a href="#contact" class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300">تماس</a>
-                        <button id="theme-toggle" class="p-2 rounded-full hover:bg-[#FF6B6B]/10 transition-colors hover:scale-110 duration-300">
-                            <i class="bi bi-moon-stars text-xl"></i>
-                        </button>
-                    </div>
-                </div>
+                </button> -->
+          <!-- Desktop Menu -->
+          <div
+            id="desktop-menu"
+            class="hidden md:block glass-effect rounded-full px-6 py-2 backdrop-blur-lg bg-gradient-to-r from-white/5 to-white/10 dark:from-black/5 dark:to-black/10 border border-white/20 dark:border-white/10 shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <div class="flex items-center space-x-6 space-x-reverse">
+              <a
+                href="#home"
+                class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300"
+                >خانه</a
+              >
+              <a
+                href="#about"
+                class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300"
+                >درباره من</a
+              >
+              <a
+                href="#skills"
+                class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300"
+                >مهارت‌ها</a
+              >
+              <a
+                href="#projects"
+                class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300"
+                >پروژه‌ها</a
+              >
+              <a
+                href="#pricing"
+                class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300"
+                >قیمت‌ها</a
+              >
+              <a
+                href="#articles"
+                class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300"
+                >مقالات</a
+              >
+              <a
+                href="#contact"
+                class="nav-link hover:text-[#FF6B6B] transition-colors text-sm hover:scale-110 duration-300"
+                >تماس</a
+              >
+              <button
+                id="theme-toggle"
+                class="p-2 rounded-full hover:bg-[#FF6B6B]/10 transition-colors hover:scale-110 duration-300"
+              >
+                <i class="bi bi-moon-stars text-xl"></i>
+              </button>
             </div>
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed bottom-0 left-0 right-0 md:hidden glass-effect rounded-t-2xl p-4 backdrop-blur-lg bg-gradient-to-r from-white/5 to-white/10 dark:from-black/5 dark:to-black/10 border-t border-white/20 dark:border-white/10 shadow-lg z-[1000]">
-        <div class="flex justify-around items-center">
-            <a href="#home" class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors">
-                <i class="bi bi-house-door text-xl"></i>
-                <span class="text-xs">خانه</span>
-            </a>
-            <a href="#about" class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors">
-                <i class="bi bi-person text-xl"></i>
-                <span class="text-xs">درباره</span>
-            </a>
-            <a href="#skills" class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors">
-                <i class="bi bi-gear text-xl"></i>
-                <span class="text-xs">مهارت‌ها</span>
-            </a>
-            <a href="#projects" class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors">
-                <i class="bi bi-briefcase text-xl"></i>
-                <span class="text-xs">پروژه‌ها</span>
-            </a>
-            <a href="#pricing" class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors">
-                <i class="bi bi-tag text-xl"></i>
-                <span class="text-xs">قیمت‌ها</span>
-            </a>
-            <a href="#articles" class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors">
-                <i class="bi bi-newspaper text-xl"></i>
-                <span class="text-xs">مقالات</span>
-            </a>
-            <a href="#contact" class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors">
-                <i class="bi bi-envelope text-xl"></i>
-                <span class="text-xs">تماس</span>
-            </a>
-        </div>
+    <div
+      id="mobile-menu"
+      class="fixed bottom-0 left-0 right-0 md:hidden glass-effect rounded-t-2xl p-4 backdrop-blur-lg bg-gradient-to-r from-white/5 to-white/10 dark:from-black/5 dark:to-black/10 border-t border-white/20 dark:border-white/10 shadow-lg z-[1000]"
+    >
+      <div class="flex justify-around items-center">
+        <a
+          href="#home"
+          class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors"
+        >
+          <i class="bi bi-house-door text-xl"></i>
+          <span class="text-xs">خانه</span>
+        </a>
+        <a
+          href="#about"
+          class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors"
+        >
+          <i class="bi bi-person text-xl"></i>
+          <span class="text-xs">درباره</span>
+        </a>
+        <a
+          href="#skills"
+          class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors"
+        >
+          <i class="bi bi-gear text-xl"></i>
+          <span class="text-xs">مهارت‌ها</span>
+        </a>
+        <a
+          href="#projects"
+          class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors"
+        >
+          <i class="bi bi-briefcase text-xl"></i>
+          <span class="text-xs">پروژه‌ها</span>
+        </a>
+        <a
+          href="#pricing"
+          class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors"
+        >
+          <i class="bi bi-tag text-xl"></i>
+          <span class="text-xs">قیمت‌ها</span>
+        </a>
+        <a
+          href="#articles"
+          class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors"
+        >
+          <i class="bi bi-newspaper text-xl"></i>
+          <span class="text-xs">مقالات</span>
+        </a>
+        <a
+          href="#contact"
+          class="flex flex-col items-center space-y-1 text-gray-300 hover:text-[#FF6B6B] transition-colors"
+        >
+          <i class="bi bi-envelope text-xl"></i>
+          <span class="text-xs">تماس</span>
+        </a>
+      </div>
     </div>
 
     <!-- Home Section -->
     <section id="home" class="active">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <!-- Left Side - Profile -->
-                <div class="relative animate-fade-in-left order-2 md:order-1">
-                    <div class="w-48 h-48 md:w-64 md:h-64 mx-auto animate-float relative">
-                        <div class="absolute inset-0 rounded-full border-4 border-transparent bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] animate-border-glow"></div>
-                        <div class="w-full h-full rounded-full bg-gradient-to-r from-[#FF6B6B]/20 to-[#4ECDC4]/20 animate-pulse-slow"></div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="bi bi-code-square text-6xl md:text-8xl text-[#FF6B6B] animate-rotate-in"></i>
-                        </div>
-                    </div>
-                </div>
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <!-- Left Side - Profile -->
+          <div class="relative animate-fade-in-left order-2 md:order-1">
+            <div class="w-48 h-48 md:w-64 md:h-64 mx-auto relative">
+              <!-- Animated background elements -->
+              <div
+                class="absolute -inset-8 bg-gradient-to-r from-[#FF6B6B]/20 to-[#4ECDC4]/20 rounded-full blur-xl animate-pulse-slow"
+              ></div>
+              <div
+                class="absolute inset-0 rounded-full border-4 border-transparent bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] animate-border-glow"
+              ></div>
+              <div
+                class="w-full h-full rounded-full bg-gradient-to-r from-[#FF6B6B]/10 to-[#4ECDC4]/10 backdrop-blur-sm animate-float"
+              ></div>
 
-                <!-- Right Side - Info -->
-                <div class="text-right space-y-6 order-1 md:order-2">
-                    <h1 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent">
-                        محمد یازرلو
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-300">
-                        توسعه‌دهنده فرانت‌اند
-                    </p>
-                    <div class="flex space-x-4 space-x-reverse">
-                        <a href="#" class="glass-effect p-3 rounded-full hover:bg-[#FF6B6B]/20 transition-all duration-300">
-                            <i class="bi bi-github text-xl md:text-2xl"></i>
-                        </a>
-                        <a href="#" class="glass-effect p-3 rounded-full hover:bg-[#FF6B6B]/20 transition-all duration-300">
-                            <i class="bi bi-linkedin text-xl md:text-2xl"></i>
-                        </a>
-                        <a href="#" class="glass-effect p-3 rounded-full hover:bg-[#FF6B6B]/20 transition-all duration-300">
-                            <i class="bi bi-twitter text-xl md:text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
+              <!-- Floating tech icons -->
+              <div
+                class="absolute -top-4 -right-4 glass-effect p-3 rounded-full animate-float"
+                style="animation-delay: 0.5s"
+              >
+                <i class="bi bi-react text-xl text-[#61DAFB]"></i>
+              </div>
+              <div
+                class="absolute -bottom-2 -left-4 glass-effect p-3 rounded-full animate-float"
+                style="animation-delay: 1s"
+              >
+                <i class="bi bi-filetype-js text-xl text-[#F7DF1E]"></i>
+              </div>
+              <div
+                class="absolute top-1/2 -right-8 glass-effect p-3 rounded-full animate-float"
+                style="animation-delay: 1.5s"
+              >
+                <i class="bi bi-filetype-html text-xl text-[#E34F26]"></i>
+              </div>
+
+              <!-- Main icon -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <i
+                  class="bi bi-code-square text-6xl md:text-8xl text-[#FF6B6B] animate-pulse"
+                ></i>
+              </div>
             </div>
+          </div>
+
+          <!-- Right Side - Info -->
+          <div class="text-right space-y-6 order-1 md:order-2">
+            <div class="inline-block">
+              <span
+                class="bg-white/10 text-[#4ECDC4] px-3 py-1 rounded-full text-sm"
+                >توسعه‌دهنده فرانت‌اند</span
+              >
+            </div>
+            <h1
+              class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent"
+            >
+              محمد یازرلو
+            </h1>
+            <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+              متخصص در ساخت رابط‌های کاربری مدرن و واکنش‌گرا با
+              <span class="text-[#FF6B6B]">React</span>،
+              <span class="text-[#4ECDC4]">Tailwind CSS</span> و
+              <span class="text-[#FF6B6B]">JavaScript</span>. با تجربه در
+              پیاده‌سازی پروژه‌های وب با تمرکز بر تجربه کاربری عالی.
+            </p>
+            <div class="flex flex-wrap gap-4 pt-2">
+              <a
+                href="#contact"
+                class="glass-effect px-6 py-3 rounded-full hover:bg-[#FF6B6B]/20 transition-all duration-300 flex items-center gap-2 group"
+              >
+                <span>تماس با من</span>
+                <i
+                  class="bi bi-arrow-left text-xl group-hover:translate-x-1 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="#projects"
+                class="glass-effect px-6 py-3 rounded-full hover:bg-[#4ECDC4]/20 transition-all duration-300"
+              >
+                مشاهده نمونه کارها
+              </a>
+            </div>
+            <div class="flex space-x-4 space-x-reverse pt-4">
+              <a
+                href="#"
+                class="glass-effect p-3 rounded-full hover:bg-[#FF6B6B]/20 transition-all duration-300 hover:-translate-y-1"
+              >
+                <i class="bi bi-github text-xl md:text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                class="glass-effect p-3 rounded-full hover:bg-[#0077B5]/20 transition-all duration-300 hover:-translate-y-1"
+              >
+                <i class="bi bi-linkedin text-xl md:text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                class="glass-effect p-3 rounded-full hover:bg-[#1DA1F2]/20 transition-all duration-300 hover:-translate-y-1"
+              >
+                <i class="bi bi-twitter text-xl md:text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                class="glass-effect p-3 rounded-full hover:bg-[#E4405F]/20 transition-all duration-300 hover:-translate-y-1"
+              >
+                <i class="bi bi-instagram text-xl md:text-2xl"></i>
+              </a>
+            </div>
+          </div>
         </div>
+
+        <!-- Stats cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+          <div
+            class="glass-effect p-4 rounded-xl text-center hover:scale-105 transition-all duration-300"
+          >
+            <div class="text-2xl md:text-3xl font-bold text-[#FF6B6B]">۳+</div>
+            <div class="text-sm text-gray-300">سال تجربه</div>
+          </div>
+          <div
+            class="glass-effect p-4 rounded-xl text-center hover:scale-105 transition-all duration-300"
+          >
+            <div class="text-2xl md:text-3xl font-bold text-[#4ECDC4]">۵۰+</div>
+            <div class="text-sm text-gray-300">پروژه تکمیل شده</div>
+          </div>
+          <div
+            class="glass-effect p-4 rounded-xl text-center hover:scale-105 transition-all duration-300"
+          >
+            <div class="text-2xl md:text-3xl font-bold text-[#FF6B6B]">۲۰+</div>
+            <div class="text-sm text-gray-300">مشتری راضی</div>
+          </div>
+          <div
+            class="glass-effect p-4 rounded-xl text-center hover:scale-105 transition-all duration-300"
+          >
+            <div class="text-2xl md:text-3xl font-bold text-[#4ECDC4]">۱۰+</div>
+            <div class="text-sm text-gray-300">تکنولوژی</div>
+          </div>
+        </div>
+      </div>
+      <div class="block md:hidden h-40"></div> <!-- فضای خالی 5rem (80px) فقط در حالت موبایل -->
+
     </section>
 
     <!-- About Section -->
     <section id="about">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-2xl md:text-4xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent">
-                    درباره من
-                </h2>
-                <div class="glass-effect p-4 md:p-8 rounded-2xl">
-                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        من یک توسعه‌دهنده فرانت‌اند با بیش از 3 سال تجربه در زمینه توسعه وب هستم. 
-                        تخصص من در ایجاد رابط‌های کاربری زیبا و کاربرپسند است.
-                        من به کدنویسی تمیز و اصولی اعتقاد دارم و همیشه سعی می‌کنم از جدیدترین تکنولوژی‌ها استفاده کنم.
-                    </p>
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto">
+          <h2
+            class="text-2xl md:text-4xl font-bold mb-10 text-center bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent relative"
+          >
+            درباره من
+            <span
+              class="absolute w-20 h-1 bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bottom-0 left-1/2 transform -translate-x-1/2 -mb-3 rounded-full"
+            ></span>
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <!-- Left side - Image with decorative elements -->
+            <div class="md:col-span-1 relative">
+              <div
+                class="relative mx-auto w-64 h-64 md:w-full md:h-auto aspect-square"
+              >
+                <!-- Background decorative elements -->
+                <div
+                  class="absolute -inset-4 bg-gradient-to-r from-[#FF6B6B]/30 to-[#4ECDC4]/30 rounded-full blur-xl animate-pulse-slow opacity-70"
+                ></div>
+
+                <!-- Profile image with frame -->
+                <div
+                  class="relative w-full h-full rounded-2xl overflow-hidden glass-effect p-2"
+                >
+                  <img
+                    src="https://via.placeholder.com/400x400"
+                    alt="محمد یازرلو"
+                    class="w-full h-full object-cover rounded-xl"
+                  />
+
+                  <!-- Decorative floating elements -->
+                  <div
+                    class="absolute -top-3 -right-3 glass-effect p-2 rounded-lg rotate-12 animate-float"
+                    style="animation-delay: 0.2s"
+                  >
+                    <i class="bi bi-braces text-[#FF6B6B] text-xl"></i>
+                  </div>
+                  <div
+                    class="absolute -bottom-3 -left-3 glass-effect p-2 rounded-lg -rotate-12 animate-float"
+                    style="animation-delay: 0.7s"
+                  >
+                    <i class="bi bi-code-slash text-[#4ECDC4] text-xl"></i>
+                  </div>
                 </div>
+              </div>
             </div>
+
+            <!-- Right side - Content -->
+            <div class="md:col-span-2">
+              <div
+                class="glass-effect p-6 md:p-8 rounded-2xl relative overflow-hidden"
+              >
+                <!-- Background decorative pattern -->
+                <div
+                  class="absolute -top-24 -right-24 w-48 h-48 bg-[#FF6B6B]/10 rounded-full blur-2xl"
+                ></div>
+                <div
+                  class="absolute -bottom-24 -left-24 w-48 h-48 bg-[#4ECDC4]/10 rounded-full blur-2xl"
+                ></div>
+
+                <!-- Content -->
+                <div class="relative space-y-4">
+                  <p class="text-gray-200 text-base md:text-lg leading-relaxed">
+                    سلام! من
+                    <span class="font-bold text-[#FF6B6B]">محمد یازرلو</span>
+                    هستم، یک توسعه‌دهنده فرانت‌اند با بیش از
+                    <span class="font-bold text-[#4ECDC4]">3 سال</span> تجربه در
+                    زمینه طراحی و توسعه وب.
+                  </p>
+
+                  <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                    تخصص من در ایجاد رابط‌های کاربری
+                    <span class="font-bold text-[#FF6B6B]">زیبا</span>،
+                    <span class="font-bold text-[#4ECDC4]">کاربرپسند</span> و
+                    <span class="font-bold text-[#FF6B6B]">واکنش‌گرا</span> است.
+                    من به کدنویسی تمیز و اصولی اعتقاد دارم و همیشه سعی می‌کنم از
+                    جدیدترین تکنولوژی‌ها استفاده کنم.
+                  </p>
+
+                  <!-- <div class="pt-2">
+                                    <h3 class="text-lg font-bold mb-3 text-[#4ECDC4]">مهارت‌های کلیدی:</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-white/10 px-3 py-1 rounded-full text-sm hover:bg-[#FF6B6B]/20 transition-colors">HTML5 & CSS3</span>
+                                        <span class="bg-white/10 px-3 py-1 rounded-full text-sm hover:bg-[#FF6B6B]/20 transition-colors">JavaScript (ES6+)</span>
+                                        <span class="bg-white/10 px-3 py-1 rounded-full text-sm hover:bg-[#FF6B6B]/20 transition-colors">React.js</span>
+                                        <span class="bg-white/10 px-3 py-1 rounded-full text-sm hover:bg-[#FF6B6B]/20 transition-colors">Tailwind CSS</span>
+                                        <span class="bg-white/10 px-3 py-1 rounded-full text-sm hover:bg-[#FF6B6B]/20 transition-colors">Responsive Design</span>
+                                    </div>
+                                </div> -->
+
+                  <div class="pt-2">
+                    <h3 class="text-lg font-bold mb-3 text-[#FF6B6B]">
+                      تحصیلات:
+                    </h3>
+                    <div class="glass-effect p-3 rounded-xl">
+                      <div class="flex justify-between items-center">
+                        <span class="font-medium"
+                          >کارشناسی مهندسی کامپیوتر</span
+                        >
+                        <span class="text-sm text-gray-400">۱۳۹۶ - ۱۴۰۰</span>
+                      </div>
+                      <div class="text-sm text-gray-300">دانشگاه تهران</div>
+                    </div>
+                  </div>
+
+                  <div class="flex justify-center pt-4">
+                    <a
+                      href="#contact"
+                      class="glass-effect px-6 py-2 rounded-full hover:bg-[#FF6B6B]/20 transition-all duration-300 flex items-center gap-2 group"
+                    >
+                      <span>برای همکاری تماس بگیرید</span>
+                      <i
+                        class="bi bi-arrow-left text-lg group-hover:translate-x-1 transition-transform"
+                      ></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats/Facts section -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+            <div
+              class="glass-effect p-4 rounded-xl text-center hover:scale-105 transition-all duration-300 group"
+            >
+              <div
+                class="text-3xl md:text-4xl mb-2 group-hover:text-[#FF6B6B] transition-colors"
+              >
+                <i class="bi bi-clock-history"></i>
+              </div>
+              <div
+                class="text-xl font-bold mb-1 group-hover:text-[#FF6B6B] transition-colors"
+              >
+                ۳+
+              </div>
+              <div class="text-sm text-gray-300">سال تجربه</div>
+            </div>
+            <div
+              class="glass-effect p-4 rounded-xl text-center hover:scale-105 transition-all duration-300 group"
+            >
+              <div
+                class="text-3xl md:text-4xl mb-2 group-hover:text-[#4ECDC4] transition-colors"
+              >
+                <i class="bi bi-briefcase"></i>
+              </div>
+              <div
+                class="text-xl font-bold mb-1 group-hover:text-[#4ECDC4] transition-colors"
+              >
+                ۵۰+
+              </div>
+              <div class="text-sm text-gray-300">پروژه موفق</div>
+            </div>
+            <div
+              class="glass-effect p-4 rounded-xl text-center hover:scale-105 transition-all duration-300 group"
+            >
+              <div
+                class="text-3xl md:text-4xl mb-2 group-hover:text-[#FF6B6B] transition-colors"
+              >
+                <i class="bi bi-people"></i>
+              </div>
+              <div
+                class="text-xl font-bold mb-1 group-hover:text-[#FF6B6B] transition-colors"
+              >
+                ۲۰+
+              </div>
+              <div class="text-sm text-gray-300">مشتری راضی</div>
+            </div>
+            <div
+              class="glass-effect p-4 rounded-xl text-center hover:scale-105 transition-all duration-300 group"
+            >
+              <div
+                class="text-3xl md:text-4xl mb-2 group-hover:text-[#4ECDC4] transition-colors"
+              >
+                <i class="bi bi-award"></i>
+              </div>
+              <div
+                class="text-xl font-bold mb-1 group-hover:text-[#4ECDC4] transition-colors"
+              >
+                ۵+
+              </div>
+              <div class="text-sm text-gray-300">جوایز</div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="block md:hidden h-40"></div> <!-- فضای خالی 5rem (80px) فقط در حالت موبایل -->
+
     </section>
 
     <!-- Skills Section -->
     <section id="skills">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl md:text-4xl font-bold mb-8 md:mb-12 text-center bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent">
-                مهارت‌های من
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto">
-                <div class="glass-effect p-4 md:p-6 rounded-2xl">
-                    <h3 class="text-lg md:text-xl font-bold mb-4">فرانت‌اند</h3>
-                    <div class="space-y-3 md:space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm md:text-base">HTML/CSS</span>
-                                <span class="text-sm md:text-base">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] h-2 rounded-full" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm md:text-base">JavaScript</span>
-                                <span class="text-sm md:text-base">90%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] h-2 rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm md:text-base">React</span>
-                                <span class="text-sm md:text-base">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] h-2 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass-effect p-4 md:p-6 rounded-2xl">
-                    <h3 class="text-lg md:text-xl font-bold mb-4">ابزارها</h3>
-                    <div class="space-y-3 md:space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm md:text-base">Git</span>
-                                <span class="text-sm md:text-base">90%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] h-2 rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm md:text-base">Figma</span>
-                                <span class="text-sm md:text-base">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] h-2 rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm md:text-base">VS Code</span>
-                                <span class="text-sm md:text-base">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] h-2 rounded-full" style="width: 95%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-2xl md:text-3xl font-bold mb-6 text-center bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent relative"
+        >
+          مهارت‌های من
+          <span
+            class="absolute w-16 h-1 bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bottom-0 left-1/2 transform -translate-x-1/2 -mb-2 rounded-full"
+          ></span>
+        </h2>
+
+        <!-- Skill Categories Tabs - Compact Version -->
+        <div class="flex flex-wrap justify-center gap-2 mb-6">
+          <button
+            class="skill-tab active px-3 py-1.5 rounded-full glass-effect text-xs md:text-sm transition-all duration-300"
+            data-category="all"
+          >
+            همه
+          </button>
+          <button
+            class="skill-tab px-3 py-1.5 rounded-full glass-effect text-xs md:text-sm transition-all duration-300"
+            data-category="frontend"
+          >
+            فرانت‌اند
+          </button>
+          <button
+            class="skill-tab px-3 py-1.5 rounded-full glass-effect text-xs md:text-sm transition-all duration-300"
+            data-category="tools"
+          >
+            ابزارها
+          </button>
+          <button
+            class="skill-tab px-3 py-1.5 rounded-full glass-effect text-xs md:text-sm transition-all duration-300"
+            data-category="soft"
+          >
+            مهارت‌های نرم
+          </button>
         </div>
+
+        <!-- Main Skills Grid - More Compact -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+          <!-- Frontend Skills - Compact Version -->
+          <div class="skill-category" data-category="frontend">
+            <div
+              class="glass-effect p-4 md:p-5 rounded-xl relative overflow-hidden group hover:shadow-lg hover:shadow-[#FF6B6B]/10 transition-all duration-500"
+            >
+              <!-- Simplified Header -->
+              <div class="flex items-center gap-2 mb-4">
+                <div class="p-2 rounded-lg bg-[#FF6B6B]/20">
+                  <i class="bi bi-code-slash text-lg text-[#FF6B6B]"></i>
+                </div>
+                <h3
+                  class="text-lg font-bold bg-gradient-to-r from-[#FF6B6B] to-[#FF6B6B]/70 bg-clip-text text-transparent"
+                >
+                  فرانت‌اند
+                </h3>
+              </div>
+
+              <!-- Skills with compact progress bars -->
+              <div class="space-y-3">
+                <div class="skill-item">
+                  <div class="flex justify-between mb-1">
+                    <div class="flex items-center gap-1.5">
+                      <i class="bi bi-filetype-html text-[#E34F26] text-sm"></i>
+                      <span class="text-xs md:text-sm font-medium"
+                        >HTML/CSS</span
+                      >
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-[#FF6B6B]"
+                      >95%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-gray-700/50 rounded-full h-1.5 overflow-hidden"
+                  >
+                    <div
+                      class="skill-progress bg-gradient-to-r from-[#FF6B6B] to-[#FF9D9D] h-1.5 rounded-full"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <div class="mt-1 flex flex-wrap gap-1">
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Semantic HTML</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >CSS3</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >SASS</span
+                    >
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-1">
+                    <div class="flex items-center gap-1.5">
+                      <i class="bi bi-filetype-js text-[#F7DF1E] text-sm"></i>
+                      <span class="text-xs md:text-sm font-medium"
+                        >JavaScript</span
+                      >
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-[#FF6B6B]"
+                      >90%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-gray-700/50 rounded-full h-1.5 overflow-hidden"
+                  >
+                    <div
+                      class="skill-progress bg-gradient-to-r from-[#FF6B6B] to-[#FF9D9D] h-1.5 rounded-full"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <div class="mt-1 flex flex-wrap gap-1">
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >ES6+</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >TypeScript</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >jQuery</span
+                    >
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-1">
+                    <div class="flex items-center gap-1.5">
+                      <i class="bi bi-react text-[#61DAFB] text-sm"></i>
+                      <span class="text-xs md:text-sm font-medium">React</span>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-[#FF6B6B]"
+                      >85%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-gray-700/50 rounded-full h-1.5 overflow-hidden"
+                  >
+                    <div
+                      class="skill-progress bg-gradient-to-r from-[#FF6B6B] to-[#FF9D9D] h-1.5 rounded-full"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <div class="mt-1 flex flex-wrap gap-1">
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Hooks</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Redux</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Next.js</span
+                    >
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-1">
+                    <div class="flex items-center gap-1.5">
+                      <i class="bi bi-bootstrap text-[#7952B3] text-sm"></i>
+                      <span class="text-xs md:text-sm font-medium"
+                        >CSS Frameworks</span
+                      >
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-[#FF6B6B]"
+                      >92%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-gray-700/50 rounded-full h-1.5 overflow-hidden"
+                  >
+                    <div
+                      class="skill-progress bg-gradient-to-r from-[#FF6B6B] to-[#FF9D9D] h-1.5 rounded-full"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <div class="mt-1 flex flex-wrap gap-1">
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Tailwind</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Bootstrap</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Material UI</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools Skills - Compact Version -->
+          <div class="skill-category" data-category="tools">
+            <div
+              class="glass-effect p-4 md:p-5 rounded-xl relative overflow-hidden group hover:shadow-lg hover:shadow-[#4ECDC4]/10 transition-all duration-500"
+            >
+              <!-- Simplified Header -->
+              <div class="flex items-center gap-2 mb-4">
+                <div class="p-2 rounded-lg bg-[#4ECDC4]/20">
+                  <i class="bi bi-tools text-lg text-[#4ECDC4]"></i>
+                </div>
+                <h3
+                  class="text-lg font-bold bg-gradient-to-r from-[#4ECDC4] to-[#4ECDC4]/70 bg-clip-text text-transparent"
+                >
+                  ابزارها
+                </h3>
+              </div>
+
+              <!-- Skills with compact progress bars -->
+              <div class="space-y-3">
+                <div class="skill-item">
+                  <div class="flex justify-between mb-1">
+                    <div class="flex items-center gap-1.5">
+                      <i class="bi bi-git text-[#F05032] text-sm"></i>
+                      <span class="text-xs md:text-sm font-medium">Git</span>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-[#4ECDC4]"
+                      >90%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-gray-700/50 rounded-full h-1.5 overflow-hidden"
+                  >
+                    <div
+                      class="skill-progress bg-gradient-to-r from-[#4ECDC4] to-[#8EEAE0] h-1.5 rounded-full"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <div class="mt-1 flex flex-wrap gap-1">
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >GitHub</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >GitLab</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Version Control</span
+                    >
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-1">
+                    <div class="flex items-center gap-1.5">
+                      <i class="bi bi-palette text-[#F24E1E] text-sm"></i>
+                      <span class="text-xs md:text-sm font-medium">Figma</span>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-[#4ECDC4]"
+                      >80%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-gray-700/50 rounded-full h-1.5 overflow-hidden"
+                  >
+                    <div
+                      class="skill-progress bg-gradient-to-r from-[#4ECDC4] to-[#8EEAE0] h-1.5 rounded-full"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <div class="mt-1 flex flex-wrap gap-1">
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >UI Design</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Prototyping</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Wireframing</span
+                    >
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-1">
+                    <div class="flex items-center gap-1.5">
+                      <i class="bi bi-code-square text-[#007ACC] text-sm"></i>
+                      <span class="text-xs md:text-sm font-medium"
+                        >VS Code</span
+                      >
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-[#4ECDC4]"
+                      >95%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-gray-700/50 rounded-full h-1.5 overflow-hidden"
+                  >
+                    <div
+                      class="skill-progress bg-gradient-to-r from-[#4ECDC4] to-[#8EEAE0] h-1.5 rounded-full"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <div class="mt-1 flex flex-wrap gap-1">
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Extensions</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Debugging</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Customization</span
+                    >
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-1">
+                    <div class="flex items-center gap-1.5">
+                      <i class="bi bi-terminal text-white text-sm"></i>
+                      <span class="text-xs md:text-sm font-medium"
+                        >Build Tools</span
+                      >
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-[#4ECDC4]"
+                      >85%</span
+                    >
+                  </div>
+                  <div
+                    class="w-full bg-gray-700/50 rounded-full h-1.5 overflow-hidden"
+                  >
+                    <div
+                      class="skill-progress bg-gradient-to-r from-[#4ECDC4] to-[#8EEAE0] h-1.5 rounded-full"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <div class="mt-1 flex flex-wrap gap-1">
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Webpack</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >Vite</span
+                    >
+                    <span
+                      class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded-full"
+                      >npm/yarn</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soft Skills - Compact Grid Layout -->
+          <div
+            class="skill-category md:col-span-2"
+            style="display: none"
+            data-category="soft"
+          >
+            <div
+              class="glass-effect p-4 md:p-5 rounded-xl relative overflow-hidden"
+            >
+              <!-- Simplified Header -->
+              <div class="flex items-center gap-2 mb-4">
+                <div
+                  class="p-2 rounded-lg bg-gradient-to-br from-[#FF6B6B]/10 to-[#4ECDC4]/10"
+                >
+                  <i class="bi bi-people text-lg text-white"></i>
+                </div>
+                <h3
+                  class="text-lg font-bold bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent"
+                >
+                  مهارت‌های نرم
+                </h3>
+              </div>
+
+              <!-- Soft skills in compact grid layout -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div
+                  class="glass-effect p-2 rounded-lg text-center hover:scale-105 transition-all duration-300"
+                >
+                  <div class="text-xl mb-1 text-[#FF6B6B]">
+                    <i class="bi bi-chat-dots"></i>
+                  </div>
+                  <div class="text-xs font-medium">ارتباط مؤثر</div>
+                </div>
+
+                <div
+                  class="glass-effect p-2 rounded-lg text-center hover:scale-105 transition-all duration-300"
+                >
+                  <div class="text-xl mb-1 text-[#4ECDC4]">
+                    <i class="bi bi-lightbulb"></i>
+                  </div>
+                  <div class="text-xs font-medium">حل مسئله</div>
+                </div>
+
+                <div
+                  class="glass-effect p-2 rounded-lg text-center hover:scale-105 transition-all duration-300"
+                >
+                  <div class="text-xl mb-1 text-[#FF6B6B]">
+                    <i class="bi bi-clock"></i>
+                  </div>
+                  <div class="text-xs font-medium">مدیریت زمان</div>
+                </div>
+
+                <div
+                  class="glass-effect p-2 rounded-lg text-center hover:scale-105 transition-all duration-300"
+                >
+                  <div class="text-xl mb-1 text-[#4ECDC4]">
+                    <i class="bi bi-people-fill"></i>
+                  </div>
+                  <div class="text-xs font-medium">کار تیمی</div>
+                </div>
+
+                <div
+                  class="glass-effect p-2 rounded-lg text-center hover:scale-105 transition-all duration-300"
+                >
+                  <div class="text-xl mb-1 text-[#FF6B6B]">
+                    <i class="bi bi-book"></i>
+                  </div>
+                  <div class="text-xs font-medium">یادگیری مداوم</div>
+                </div>
+
+                <div
+                  class="glass-effect p-2 rounded-lg text-center hover:scale-105 transition-all duration-300"
+                >
+                  <div class="text-xl mb-1 text-[#4ECDC4]">
+                    <i class="bi bi-graph-up"></i>
+                  </div>
+                  <div class="text-xs font-medium">تفکر تحلیلی</div>
+                </div>
+
+                <div
+                  class="glass-effect p-2 rounded-lg text-center hover:scale-105 transition-all duration-300"
+                >
+                  <div class="text-xl mb-1 text-[#FF6B6B]">
+                    <i class="bi bi-calendar-check"></i>
+                  </div>
+                  <div class="text-xs font-medium">مدیریت پروژه</div>
+                </div>
+
+                <div
+                  class="glass-effect p-2 rounded-lg text-center hover:scale-105 transition-all duration-300"
+                >
+                  <div class="text-xl mb-1 text-[#4ECDC4]">
+                    <i class="bi bi-eye"></i>
+                  </div>
+                  <div class="text-xs font-medium">توجه به جزئیات</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Skills Section - Compact Version -->
+            <div class="mt-6 max-w-4xl mx-auto">
+              <h3 class="text-lg font-bold mb-3 text-center text-white">
+                سایر مهارت‌ها
+              </h3>
+
+              <div class="flex flex-wrap justify-center gap-2">
+                <div
+                  class="glass-effect px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:bg-[#FF6B6B]/10 transition-colors text-xs"
+                >
+                  <i class="bi bi-filetype-jsx text-[#61DAFB]"></i>
+                  <span>JSX</span>
+                </div>
+                <div
+                  class="glass-effect px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:bg-[#4ECDC4]/10 transition-colors text-xs"
+                >
+                  <i class="bi bi-filetype-json text-[#F7DF1E]"></i>
+                  <span>REST API</span>
+                </div>
+                <div
+                  class="glass-effect px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:bg-[#FF6B6B]/10 transition-colors text-xs"
+                >
+                  <i class="bi bi-filetype-sass text-[#CC6699]"></i>
+                  <span>SASS</span>
+                </div>
+                <div
+                  class="glass-effect px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:bg-[#4ECDC4]/10 transition-colors text-xs"
+                >
+                  <i class="bi bi-box text-[#764ABC]"></i>
+                  <span>Redux</span>
+                </div>
+                <div
+                  class="glass-effect px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:bg-[#FF6B6B]/10 transition-colors text-xs"
+                >
+                  <i class="bi bi-hdd-network text-white"></i>
+                  <span>GraphQL</span>
+                </div>
+                <div
+                  class="glass-effect px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:bg-[#4ECDC4]/10 transition-colors text-xs"
+                >
+                  <i class="bi bi-phone text-[#61DAFB]"></i>
+                  <span>Responsive</span>
+                </div>
+                <div
+                  class="glass-effect px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:bg-[#FF6B6B]/10 transition-colors text-xs"
+                >
+                  <i class="bi bi-speedometer2 text-[#00DC82]"></i>
+                  <span>Performance</span>
+                </div>
+                <div
+                  class="glass-effect px-3 py-1.5 rounded-full flex items-center gap-1.5 hover:bg-[#4ECDC4]/10 transition-colors text-xs"
+                >
+                  <i class="bi bi-browser-chrome text-[#4285F4]"></i>
+                  <span>Cross-Browser</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="block md:hidden h-40"></div> <!-- فضای خالی 5rem (80px) فقط در حالت موبایل -->
+
+      <!-- JavaScript for skill animations - Simplified -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // Animate skill progress bars
+          const skillProgressBars =
+            document.querySelectorAll(".skill-progress");
+
+          setTimeout(() => {
+            skillProgressBars.forEach((bar) => {
+              const width =
+                bar.parentElement.previousElementSibling.querySelector(
+                  "span:last-child"
+                ).textContent;
+              bar.style.width = width;
+              bar.style.transition = "width 1s cubic-bezier(0.4, 0, 0.2, 1)";
+            });
+          }, 300);
+
+          // Skill category tabs functionality
+          const skillTabs = document.querySelectorAll(".skill-tab");
+          const skillCategories = document.querySelectorAll(".skill-category");
+
+          // تنظیم وضعیت اولیه - مخفی کردن مهارت‌های نرم
+          const softSkillsCategory = document.querySelector(
+            '.skill-category[data-category="soft"]'
+          );
+          if (softSkillsCategory) {
+            softSkillsCategory.style.display = "none";
+          }
+
+          skillTabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+              // Remove active class from all tabs
+              skillTabs.forEach((t) => t.classList.remove("active"));
+              // Add active class to clicked tab
+              tab.classList.add("active");
+
+              const category = tab.getAttribute("data-category");
+
+              if (category === "all") {
+                // در حالت "همه" فقط فرانت‌اند و ابزارها نمایش داده شوند
+                skillCategories.forEach((cat) => {
+                  const catType = cat.getAttribute("data-category");
+                  if (catType === "frontend" || catType === "tools") {
+                    cat.style.display = "block";
+                  } else {
+                    cat.style.display = "none";
+                  }
+                });
+              } else {
+                // Show only selected category
+                skillCategories.forEach((cat) => {
+                  if (cat.getAttribute("data-category") === category) {
+                    cat.style.display = "block";
+                  } else {
+                    cat.style.display = "none";
+                  }
+                });
+              }
+            });
+          });
+        });
+      </script>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl md:text-4xl font-bold mb-8 md:mb-12 text-center bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent">
-                پروژه‌های من
-            </h2>
-            
-            <!-- Project Categories Tabs -->
-            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
-                <button class="project-tab active px-4 py-2 rounded-full glass-effect text-sm md:text-base transition-all duration-300" data-category="all">
-                    همه
-                </button>
-                <button class="project-tab px-4 py-2 rounded-full glass-effect text-sm md:text-base transition-all duration-300" data-category="web">
-                    وب
-                </button>
-                <button class="project-tab px-4 py-2 rounded-full glass-effect text-sm md:text-base transition-all duration-300" data-category="mobile">
-                    موبایل
-                </button>
-                <button class="project-tab px-4 py-2 rounded-full glass-effect text-sm md:text-base transition-all duration-300" data-category="ui">
-                    UI/UX
-                </button>
-            </div>
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-2xl md:text-4xl font-bold mb-8 md:mb-12 text-center bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent"
+        >
+          پروژه‌های من
+        </h2>
 
-            <!-- Swiper Container -->
-            <div class="swiper project-swiper">
-                <div class="swiper-wrapper">
-                    <!-- Web Projects -->
-                    <div class="swiper-slide" data-category="web">
-                        <div class="glass-effect rounded-xl overflow-hidden group">
-                            <div class="relative">
-                                <img src="https://via.placeholder.com/600x400" alt="پروژه وب" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-xl font-bold mb-2 text-white">سیستم مدیریت محتوا</h3>
-                                    <p class="text-gray-200 text-sm mb-4">یک سیستم مدیریت محتوای مدرن با قابلیت‌های پیشرفته</p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">React</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Node.js</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">MongoDB</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <a href="#" class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center">
-                                            مشاهده پروژه
-                                            <i class="bi bi-arrow-left mr-1"></i>
-                                        </a>
-                                        <div class="flex space-x-4 space-x-reverse">
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-github text-lg"></i>
-                                            </a>
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-link-45deg text-lg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Web Project 2 -->
-                    <div class="swiper-slide" data-category="web">
-                        <div class="glass-effect rounded-xl overflow-hidden group">
-                            <div class="relative">
-                                <img src="https://via.placeholder.com/600x400" alt="پروژه وب" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-xl font-bold mb-2 text-white">فروشگاه آنلاین</h3>
-                                    <p class="text-gray-200 text-sm mb-4">فروشگاه آنلاین با قابلیت‌های پیشرفته خرید و پرداخت</p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Vue.js</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Nuxt.js</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Stripe</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <a href="#" class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center">
-                                            مشاهده پروژه
-                                            <i class="bi bi-arrow-left mr-1"></i>
-                                        </a>
-                                        <div class="flex space-x-4 space-x-reverse">
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-github text-lg"></i>
-                                            </a>
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-link-45deg text-lg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Web Project 3 -->
-                    <div class="swiper-slide" data-category="web">
-                        <div class="glass-effect rounded-xl overflow-hidden group">
-                            <div class="relative">
-                                <img src="https://via.placeholder.com/600x400" alt="پروژه وب" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-xl font-bold mb-2 text-white">پلتفرم آموزش آنلاین</h3>
-                                    <p class="text-gray-200 text-sm mb-4">سیستم آموزش آنلاین با قابلیت‌های ویدیویی و آزمون</p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Next.js</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">TypeScript</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">WebRTC</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <a href="#" class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center">
-                                            مشاهده پروژه
-                                            <i class="bi bi-arrow-left mr-1"></i>
-                                        </a>
-                                        <div class="flex space-x-4 space-x-reverse">
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-github text-lg"></i>
-                                            </a>
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-link-45deg text-lg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Projects -->
-                    <div class="swiper-slide" data-category="mobile">
-                        <div class="glass-effect rounded-xl overflow-hidden group">
-                            <div class="relative">
-                                <img src="https://via.placeholder.com/600x400" alt="پروژه موبایل" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-xl font-bold mb-2 text-white">اپلیکیشن مدیریت وظایف</h3>
-                                    <p class="text-gray-200 text-sm mb-4">یک اپلیکیشن موبایل برای مدیریت وظایف و برنامه‌ریزی</p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">React Native</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Redux</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Firebase</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <a href="#" class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center">
-                                            مشاهده پروژه
-                                            <i class="bi bi-arrow-left mr-1"></i>
-                                        </a>
-                                        <div class="flex space-x-4 space-x-reverse">
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-github text-lg"></i>
-                                            </a>
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-link-45deg text-lg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Project 2 -->
-                    <div class="swiper-slide" data-category="mobile">
-                        <div class="glass-effect rounded-xl overflow-hidden group">
-                            <div class="relative">
-                                <img src="https://via.placeholder.com/600x400" alt="پروژه موبایل" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-xl font-bold mb-2 text-white">اپلیکیشن هواشناسی</h3>
-                                    <p class="text-gray-200 text-sm mb-4">اپلیکیشن پیش‌بینی آب و هوا با قابلیت‌های پیشرفته</p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Flutter</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Dart</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">OpenWeather API</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <a href="#" class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center">
-                                            مشاهده پروژه
-                                            <i class="bi bi-arrow-left mr-1"></i>
-                                        </a>
-                                        <div class="flex space-x-4 space-x-reverse">
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-github text-lg"></i>
-                                            </a>
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-link-45deg text-lg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Project 3 -->
-                    <div class="swiper-slide" data-category="mobile">
-                        <div class="glass-effect rounded-xl overflow-hidden group">
-                            <div class="relative">
-                                <img src="https://via.placeholder.com/600x400" alt="پروژه موبایل" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-xl font-bold mb-2 text-white">اپلیکیشن ورزشی</h3>
-                                    <p class="text-gray-200 text-sm mb-4">اپلیکیشن پیگیری فعالیت‌های ورزشی و تغذیه</p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Swift</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">CoreData</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">HealthKit</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <a href="#" class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center">
-                                            مشاهده پروژه
-                                            <i class="bi bi-arrow-left mr-1"></i>
-                                        </a>
-                                        <div class="flex space-x-4 space-x-reverse">
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-github text-lg"></i>
-                                            </a>
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-link-45deg text-lg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- UI Projects -->
-                    <div class="swiper-slide" data-category="ui">
-                        <div class="glass-effect rounded-xl overflow-hidden group">
-                            <div class="relative">
-                                <img src="https://via.placeholder.com/600x400" alt="پروژه UI" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-xl font-bold mb-2 text-white">طراحی رابط کاربری فروشگاه</h3>
-                                    <p class="text-gray-200 text-sm mb-4">طراحی رابط کاربری مدرن برای فروشگاه آنلاین</p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Figma</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">UI/UX</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Prototype</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <a href="#" class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center">
-                                            مشاهده پروژه
-                                            <i class="bi bi-arrow-left mr-1"></i>
-                                        </a>
-                                        <div class="flex space-x-4 space-x-reverse">
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-github text-lg"></i>
-                                            </a>
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-link-45deg text-lg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- UI Project 2 -->
-                    <div class="swiper-slide" data-category="ui">
-                        <div class="glass-effect rounded-xl overflow-hidden group">
-                            <div class="relative">
-                                <img src="https://via.placeholder.com/600x400" alt="پروژه UI" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-xl font-bold mb-2 text-white">طراحی اپلیکیشن موبایل</h3>
-                                    <p class="text-gray-200 text-sm mb-4">طراحی رابط کاربری اپلیکیشن موبایل با تمرکز بر UX</p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Adobe XD</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">UI/UX</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Wireframe</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <a href="#" class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center">
-                                            مشاهده پروژه
-                                            <i class="bi bi-arrow-left mr-1"></i>
-                                        </a>
-                                        <div class="flex space-x-4 space-x-reverse">
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-github text-lg"></i>
-                                            </a>
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-link-45deg text-lg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- UI Project 3 -->
-                    <div class="swiper-slide" data-category="ui">
-                        <div class="glass-effect rounded-xl overflow-hidden group">
-                            <div class="relative">
-                                <img src="https://via.placeholder.com/600x400" alt="پروژه UI" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 class="text-xl font-bold mb-2 text-white">طراحی داشبورد مدیریتی</h3>
-                                    <p class="text-gray-200 text-sm mb-4">طراحی رابط کاربری داشبورد مدیریتی با تمرکز بر کارایی</p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Sketch</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">UI/UX</span>
-                                        <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-white">Dashboard</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <a href="#" class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center">
-                                            مشاهده پروژه
-                                            <i class="bi bi-arrow-left mr-1"></i>
-                                        </a>
-                                        <div class="flex space-x-4 space-x-reverse">
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-github text-lg"></i>
-                                            </a>
-                                            <a href="#" class="text-white/70 hover:text-[#FF6B6B] transition-colors">
-                                                <i class="bi bi-link-45deg text-lg"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Navigation -->
-                <div class="swiper-button-next text-[#FF6B6B]"></div>
-                <div class="swiper-button-prev text-[#FF6B6B]"></div>
-                <!-- Pagination -->
-                <div class="swiper-pagination"></div>
-            </div>
+        <!-- Project Categories Tabs -->
+        <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+          <button
+            class="project-tab active px-4 py-2 rounded-full glass-effect text-sm md:text-base transition-all duration-300"
+            data-category="all"
+          >
+            همه
+          </button>
+          <button
+            class="project-tab px-4 py-2 rounded-full glass-effect text-sm md:text-base transition-all duration-300"
+            data-category="web"
+          >
+            وب
+          </button>
+          <button
+            class="project-tab px-4 py-2 rounded-full glass-effect text-sm md:text-base transition-all duration-300"
+            data-category="mobile"
+          >
+            موبایل
+          </button>
+          <button
+            class="project-tab px-4 py-2 rounded-full glass-effect text-sm md:text-base transition-all duration-300"
+            data-category="ui"
+          >
+            UI/UX
+          </button>
         </div>
+
+        <!-- Swiper Container -->
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <!-- Web Projects -->
+            <div class="swiper-slide" data-category="web">
+              <div class="glass-effect rounded-xl overflow-hidden group">
+                <div class="relative">
+                  <img
+                    src="./assets/img/programming/1.jpg"
+                    alt="پروژه وب"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  >
+                    <h3 class="text-xl font-bold mb-2 text-white">
+                      سیستم مدیریت محتوا
+                    </h3>
+                    <p class="text-gray-200 text-sm mb-4">
+                      یک سیستم مدیریت محتوای مدرن با قابلیت‌های پیشرفته
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >React</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Node.js</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >MongoDB</span
+                      >
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <a
+                        href="#"
+                        class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center"
+                      >
+                        مشاهده پروژه
+                        <i class="bi bi-arrow-left mr-1"></i>
+                      </a>
+                      <div class="flex space-x-4 space-x-reverse">
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-github text-lg"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-link-45deg text-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Web Project 2 -->
+            <div class="swiper-slide" data-category="web">
+              <div class="glass-effect rounded-xl overflow-hidden group">
+                <div class="relative">
+                  <img
+                    src="./assets/img/programming/2.jpg"
+                    alt="پروژه وب"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  >
+                    <h3 class="text-xl font-bold mb-2 text-white">
+                      فروشگاه آنلاین
+                    </h3>
+                    <p class="text-gray-200 text-sm mb-4">
+                      فروشگاه آنلاین با قابلیت‌های پیشرفته خرید و پرداخت
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Vue.js</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Nuxt.js</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Stripe</span
+                      >
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <a
+                        href="#"
+                        class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center"
+                      >
+                        مشاهده پروژه
+                        <i class="bi bi-arrow-left mr-1"></i>
+                      </a>
+                      <div class="flex space-x-4 space-x-reverse">
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-github text-lg"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-link-45deg text-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Web Project 3 -->
+            <div class="swiper-slide" data-category="web">
+              <div class="glass-effect rounded-xl overflow-hidden group">
+                <div class="relative">
+                  <img
+                    src="./assets/img/programming/3.jpg"
+                    alt="پروژه وب"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  >
+                    <h3 class="text-xl font-bold mb-2 text-white">
+                      پلتفرم آموزش آنلاین
+                    </h3>
+                    <p class="text-gray-200 text-sm mb-4">
+                      سیستم آموزش آنلاین با قابلیت‌های ویدیویی و آزمون
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Next.js</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >TypeScript</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >WebRTC</span
+                      >
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <a
+                        href="#"
+                        class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center"
+                      >
+                        مشاهده پروژه
+                        <i class="bi bi-arrow-left mr-1"></i>
+                      </a>
+                      <div class="flex space-x-4 space-x-reverse">
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-github text-lg"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-link-45deg text-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Projects -->
+            <div class="swiper-slide" data-category="mobile">
+              <div class="glass-effect rounded-xl overflow-hidden group">
+                <div class="relative">
+                  <img
+                    src="./assets/img/programming/1.jpg"
+                    alt="پروژه موبایل"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  >
+                    <h3 class="text-xl font-bold mb-2 text-white">
+                      اپلیکیشن مدیریت وظایف
+                    </h3>
+                    <p class="text-gray-200 text-sm mb-4">
+                      یک اپلیکیشن موبایل برای مدیریت وظایف و برنامه‌ریزی
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >React Native</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Redux</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Firebase</span
+                      >
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <a
+                        href="#"
+                        class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center"
+                      >
+                        مشاهده پروژه
+                        <i class="bi bi-arrow-left mr-1"></i>
+                      </a>
+                      <div class="flex space-x-4 space-x-reverse">
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-github text-lg"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-link-45deg text-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Project 2 -->
+            <div class="swiper-slide" data-category="mobile">
+              <div class="glass-effect rounded-xl overflow-hidden group">
+                <div class="relative">
+                  <img
+                    src="./assets/img/programming/2.jpg"
+                    alt="پروژه موبایل"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  >
+                    <h3 class="text-xl font-bold mb-2 text-white">
+                      اپلیکیشن هواشناسی
+                    </h3>
+                    <p class="text-gray-200 text-sm mb-4">
+                      اپلیکیشن پیش‌بینی آب و هوا با قابلیت‌های پیشرفته
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Flutter</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Dart</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >OpenWeather API</span
+                      >
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <a
+                        href="#"
+                        class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center"
+                      >
+                        مشاهده پروژه
+                        <i class="bi bi-arrow-left mr-1"></i>
+                      </a>
+                      <div class="flex space-x-4 space-x-reverse">
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-github text-lg"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-link-45deg text-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Project 3 -->
+            <div class="swiper-slide" data-category="mobile">
+              <div class="glass-effect rounded-xl overflow-hidden group">
+                <div class="relative">
+                  <img
+                    src="./assets/img/programming/2.jpg"
+                    alt="پروژه موبایل"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  >
+                    <h3 class="text-xl font-bold mb-2 text-white">
+                      اپلیکیشن ورزشی
+                    </h3>
+                    <p class="text-gray-200 text-sm mb-4">
+                      اپلیکیشن پیگیری فعالیت‌های ورزشی و تغذیه
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Swift</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >CoreData</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >HealthKit</span
+                      >
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <a
+                        href="#"
+                        class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center"
+                      >
+                        مشاهده پروژه
+                        <i class="bi bi-arrow-left mr-1"></i>
+                      </a>
+                      <div class="flex space-x-4 space-x-reverse">
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-github text-lg"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-link-45deg text-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- UI Projects -->
+            <div class="swiper-slide" data-category="ui">
+              <div class="glass-effect rounded-xl overflow-hidden group">
+                <div class="relative">
+                  <img
+                    src="./assets/img/programming/1.jpg"
+                    alt="پروژه UI"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  >
+                    <h3 class="text-xl font-bold mb-2 text-white">
+                      طراحی رابط کاربری فروشگاه
+                    </h3>
+                    <p class="text-gray-200 text-sm mb-4">
+                      طراحی رابط کاربری مدرن برای فروشگاه آنلاین
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Figma</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >UI/UX</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Prototype</span
+                      >
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <a
+                        href="#"
+                        class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center"
+                      >
+                        مشاهده پروژه
+                        <i class="bi bi-arrow-left mr-1"></i>
+                      </a>
+                      <div class="flex space-x-4 space-x-reverse">
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-github text-lg"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-link-45deg text-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- UI Project 2 -->
+            <div class="swiper-slide" data-category="ui">
+              <div class="glass-effect rounded-xl overflow-hidden group">
+                <div class="relative">
+                  <img
+                    src="./assets/img/programming/2.jpg"
+                    alt="پروژه UI"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  >
+                    <h3 class="text-xl font-bold mb-2 text-white">
+                      طراحی اپلیکیشن موبایل
+                    </h3>
+                    <p class="text-gray-200 text-sm mb-4">
+                      طراحی رابط کاربری اپلیکیشن موبایل با تمرکز بر UX
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Adobe XD</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >UI/UX</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Wireframe</span
+                      >
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <a
+                        href="#"
+                        class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center"
+                      >
+                        مشاهده پروژه
+                        <i class="bi bi-arrow-left mr-1"></i>
+                      </a>
+                      <div class="flex space-x-4 space-x-reverse">
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-github text-lg"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-link-45deg text-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- UI Project 3 -->
+            <div class="swiper-slide" data-category="ui">
+              <div class="glass-effect rounded-xl overflow-hidden group">
+                <div class="relative">
+                  <img
+                    src="./assets/img/programming/2.jpg"
+                    alt="پروژه UI"
+                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  >
+                    <h3 class="text-xl font-bold mb-2 text-white">
+                      طراحی داشبورد مدیریتی
+                    </h3>
+                    <p class="text-gray-200 text-sm mb-4">
+                      طراحی رابط کاربری داشبورد مدیریتی با تمرکز بر کارایی
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Sketch</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >UI/UX</span
+                      >
+                      <span
+                        class="text-xs bg-white/10 px-3 py-1 rounded-full text-white"
+                        >Dashboard</span
+                      >
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <a
+                        href="#"
+                        class="text-white hover:text-[#FF6B6B] transition-colors text-sm flex items-center"
+                      >
+                        مشاهده پروژه
+                        <i class="bi bi-arrow-left mr-1"></i>
+                      </a>
+                      <div class="flex space-x-4 space-x-reverse">
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-github text-lg"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="text-white/70 hover:text-[#FF6B6B] transition-colors"
+                        >
+                          <i class="bi bi-link-45deg text-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Navigation -->
+          <div class="swiper-button-next text-[#FF6B6B]"></div>
+          <div class="swiper-button-prev text-[#FF6B6B]"></div>
+          <!-- Pagination -->
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <div class="block md:hidden h-40"></div> <!-- فضای خالی 5rem (80px) فقط در حالت موبایل -->
+
     </section>
 
     <!-- Pricing Section -->
     <section id="pricing">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-center gradient-text">
-                قیمت‌های پروژه‌ها
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
-                <!-- Basic Plan -->
-                <div class="glass-effect p-4 md:p-6 rounded-xl text-center hover:scale-[1.02] transition-all duration-300">
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 gradient-text">پروژه پایه</h3>
-                    <div class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-                        <span class="gradient-text">۲</span>
-                        <span class="text-lg md:text-xl">میلیون</span>
-                        <span class="text-sm md:text-base text-gray-400">تومان</span>
-                    </div>
-                    <ul class="space-y-2 md:space-y-3 mb-4 md:mb-6 text-right text-sm md:text-base">
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            طراحی رابط کاربری
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            توسعه HTML/CSS
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            انیمیشن‌های پایه
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            پشتیبانی 1 ماهه
-                        </li>
-                    </ul>
-                    <button class="w-full py-2 md:py-2.5 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity text-sm md:text-base">
-                        سفارش پروژه
-                    </button>
-                </div>
-
-                <!-- Pro Plan -->
-                <div class="glass-effect p-4 md:p-6 rounded-xl text-center hover:scale-[1.02] transition-all duration-300 gradient-border">
-                    <div class="absolute top-0 right-0 bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] text-white px-3 md:px-4 py-1 rounded-bl-lg rounded-tr-lg text-xs md:text-sm">
-                        محبوب
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 gradient-text">پروژه حرفه‌ای</h3>
-                    <div class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-                        <span class="gradient-text">۵</span>
-                        <span class="text-lg md:text-xl">میلیون</span>
-                        <span class="text-sm md:text-base text-gray-400">تومان</span>
-                    </div>
-                    <ul class="space-y-2 md:space-y-3 mb-4 md:mb-6 text-right text-sm md:text-base">
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            تمام امکانات نسخه پایه
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            توسعه JavaScript
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            انیمیشن‌های پیشرفته
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            پشتیبانی 3 ماهه
-                        </li>
-                    </ul>
-                    <button class="w-full py-2 md:py-2.5 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity text-sm md:text-base">
-                        سفارش پروژه
-                    </button>
-                </div>
-
-                <!-- Enterprise Plan -->
-                <div class="glass-effect p-4 md:p-6 rounded-xl text-center hover:scale-[1.02] transition-all duration-300">
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 gradient-text">پروژه سازمانی</h3>
-                    <div class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-                        <span class="gradient-text">۱۰</span>
-                        <span class="text-lg md:text-xl">میلیون</span>
-                        <span class="text-sm md:text-base text-gray-400">تومان</span>
-                    </div>
-                    <ul class="space-y-2 md:space-y-3 mb-4 md:mb-6 text-right text-sm md:text-base">
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            تمام امکانات نسخه حرفه‌ای
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            توسعه React/Vue
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            بهینه‌سازی SEO
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
-                            پشتیبانی 6 ماهه
-                        </li>
-                    </ul>
-                    <button class="w-full py-2 md:py-2.5 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity text-sm md:text-base">
-                        سفارش پروژه
-                    </button>
-                </div>
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-center gradient-text"
+        >
+          قیمت‌های پروژه‌ها
+        </h2>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto"
+        >
+          <!-- Basic Plan -->
+          <div
+            class="glass-effect p-4 md:p-6 rounded-xl text-center hover:scale-[1.02] transition-all duration-300"
+          >
+            <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 gradient-text">
+              پروژه پایه
+            </h3>
+            <div class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+              <span class="gradient-text">۲</span>
+              <span class="text-lg md:text-xl">میلیون</span>
+              <span class="text-sm md:text-base text-gray-400">تومان</span>
             </div>
+            <ul
+              class="space-y-2 md:space-y-3 mb-4 md:mb-6 text-right text-sm md:text-base"
+            >
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                طراحی رابط کاربری
+              </li>
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                توسعه HTML/CSS
+              </li>
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                انیمیشن‌های پایه
+              </li>
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                پشتیبانی 1 ماهه
+              </li>
+            </ul>
+            <button
+              class="w-full py-2 md:py-2.5 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity text-sm md:text-base"
+            >
+              سفارش پروژه
+            </button>
+          </div>
+
+          <!-- Pro Plan -->
+          <div
+            class="glass-effect p-4 md:p-6 rounded-xl text-center hover:scale-[1.02] transition-all duration-300 gradient-border"
+          >
+            <div
+              class="absolute top-0 right-0 bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] text-white px-3 md:px-4 py-1 rounded-bl-lg rounded-tr-lg text-xs md:text-sm"
+            >
+              محبوب
+            </div>
+            <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 gradient-text">
+              پروژه حرفه‌ای
+            </h3>
+            <div class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+              <span class="gradient-text">۵</span>
+              <span class="text-lg md:text-xl">میلیون</span>
+              <span class="text-sm md:text-base text-gray-400">تومان</span>
+            </div>
+            <ul
+              class="space-y-2 md:space-y-3 mb-4 md:mb-6 text-right text-sm md:text-base"
+            >
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                تمام امکانات نسخه پایه
+              </li>
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                توسعه JavaScript
+              </li>
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                انیمیشن‌های پیشرفته
+              </li>
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                پشتیبانی 3 ماهه
+              </li>
+            </ul>
+            <button
+              class="w-full py-2 md:py-2.5 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity text-sm md:text-base"
+            >
+              سفارش پروژه
+            </button>
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div
+            class="glass-effect p-4 md:p-6 rounded-xl text-center hover:scale-[1.02] transition-all duration-300"
+          >
+            <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 gradient-text">
+              پروژه سازمانی
+            </h3>
+            <div class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+              <span class="gradient-text">۱۰</span>
+              <span class="text-lg md:text-xl">میلیون</span>
+              <span class="text-sm md:text-base text-gray-400">تومان</span>
+            </div>
+            <ul
+              class="space-y-2 md:space-y-3 mb-4 md:mb-6 text-right text-sm md:text-base"
+            >
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                تمام امکانات نسخه حرفه‌ای
+              </li>
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                توسعه React/Vue
+              </li>
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                بهینه‌سازی SEO
+              </li>
+              <li class="flex items-center">
+                <i class="bi bi-check-circle-fill text-[#4ECDC4] ml-2"></i>
+                پشتیبانی 6 ماهه
+              </li>
+            </ul>
+            <button
+              class="w-full py-2 md:py-2.5 rounded-lg gradient-border text-white font-medium hover:opacity-90 transition-opacity text-sm md:text-base"
+            >
+              سفارش پروژه
+            </button>
+          </div>
         </div>
+      </div>
+      <div class="block md:hidden h-40"></div> <!-- فضای خالی 5rem (80px) فقط در حالت موبایل -->
+
     </section>
 
     <!-- Articles Section -->
     <section id="articles">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-center gradient-text">
-                مقالات
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
-                <!-- Article 1 -->
-                <div class="glass-effect rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/400x200" alt="مقاله 1" class="w-full h-32 md:h-40 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    </div>
-                    <div class="p-4 md:p-5">
-                        <div class="flex items-center mb-2">
-                            <span class="text-xs md:text-sm gradient-text bg-white/5 px-2.5 py-0.5 rounded-full">فرانت‌اند</span>
-                        </div>
-                        <h3 class="text-base md:text-lg font-bold mb-2 gradient-text">بهترین فریم‌ورک‌های فرانت‌اند در سال 2024</h3>
-                        <p class="text-gray-300 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">مقایسه و بررسی بهترین فریم‌ورک‌های فرانت‌اند و انتخاب مناسب‌ترین گزینه برای پروژه‌های مختلف</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-gray-400">۲ هفته پیش</span>
-                            <a href="#" class="gradient-text hover:opacity-80 transition-opacity text-xs md:text-sm flex items-center">
-                                ادامه مطلب
-                                <i class="bi bi-arrow-left mr-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Article 2 -->
-                <div class="glass-effect rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/400x200" alt="مقاله 2" class="w-full h-32 md:h-40 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    </div>
-                    <div class="p-4 md:p-5">
-                        <div class="flex items-center mb-2">
-                            <span class="text-xs md:text-sm gradient-text bg-white/5 px-2.5 py-0.5 rounded-full">بهینه‌سازی</span>
-                        </div>
-                        <h3 class="text-base md:text-lg font-bold mb-2 gradient-text">بهینه‌سازی عملکرد وب‌سایت</h3>
-                        <p class="text-gray-300 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">راهکارهای عملی برای بهبود سرعت و عملکرد وب‌سایت‌ها با استفاده از تکنیک‌های مدرن</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-gray-400">۱ ماه پیش</span>
-                            <a href="#" class="gradient-text hover:opacity-80 transition-opacity text-xs md:text-sm flex items-center">
-                                ادامه مطلب
-                                <i class="bi bi-arrow-left mr-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Article 3 -->
-                <div class="glass-effect rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/400x200" alt="مقاله 3" class="w-full h-32 md:h-40 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    </div>
-                    <div class="p-4 md:p-5">
-                        <div class="flex items-center mb-2">
-                            <span class="text-xs md:text-sm gradient-text bg-white/5 px-2.5 py-0.5 rounded-full">UI/UX</span>
-                        </div>
-                        <h3 class="text-base md:text-lg font-bold mb-2 gradient-text">طراحی رابط کاربری مدرن</h3>
-                        <p class="text-gray-300 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">اصول و تکنیک‌های طراحی رابط کاربری مدرن با استفاده از ابزارهای جدید و متدهای نوین</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-gray-400">۲ ماه پیش</span>
-                            <a href="#" class="gradient-text hover:opacity-80 transition-opacity text-xs md:text-sm flex items-center">
-                                ادامه مطلب
-                                <i class="bi bi-arrow-left mr-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-center gradient-text"
+        >
+          مقالات
+        </h2>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto"
+        >
+          <!-- Article 1 -->
+          <div
+            class="glass-effect rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="relative">
+              <img
+                src="./assets/img/programming/1.jpg"
+                alt="مقاله 1"
+                class="w-full h-32 md:h-40 object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+              ></div>
             </div>
+            <div class="p-4 md:p-5">
+              <div class="flex items-center mb-2">
+                <span
+                  class="text-xs md:text-sm gradient-text bg-white/5 px-2.5 py-0.5 rounded-full"
+                  >فرانت‌اند</span
+                >
+              </div>
+              <h3 class="text-base md:text-lg font-bold mb-2 gradient-text">
+                بهترین فریم‌ورک‌های فرانت‌اند در سال 2024
+              </h3>
+              <p
+                class="text-gray-300 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2"
+              >
+                مقایسه و بررسی بهترین فریم‌ورک‌های فرانت‌اند و انتخاب مناسب‌ترین
+                گزینه برای پروژه‌های مختلف
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400">۲ هفته پیش</span>
+                <a
+                  href="#"
+                  class="gradient-text hover:opacity-80 transition-opacity text-xs md:text-sm flex items-center"
+                >
+                  ادامه مطلب
+                  <i class="bi bi-arrow-left mr-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Article 2 -->
+          <div
+            class="glass-effect rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="relative">
+              <img
+                src="./assets/img/programming/2.jpg"
+                alt="مقاله 2"
+                class="w-full h-32 md:h-40 object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+              ></div>
+            </div>
+            <div class="p-4 md:p-5">
+              <div class="flex items-center mb-2">
+                <span
+                  class="text-xs md:text-sm gradient-text bg-white/5 px-2.5 py-0.5 rounded-full"
+                  >بهینه‌سازی</span
+                >
+              </div>
+              <h3 class="text-base md:text-lg font-bold mb-2 gradient-text">
+                بهینه‌سازی عملکرد وب‌سایت
+              </h3>
+              <p
+                class="text-gray-300 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2"
+              >
+                راهکارهای عملی برای بهبود سرعت و عملکرد وب‌سایت‌ها با استفاده از
+                تکنیک‌های مدرن
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400">۱ ماه پیش</span>
+                <a
+                  href="#"
+                  class="gradient-text hover:opacity-80 transition-opacity text-xs md:text-sm flex items-center"
+                >
+                  ادامه مطلب
+                  <i class="bi bi-arrow-left mr-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Article 3 -->
+          <div
+            class="glass-effect rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
+          >
+            <div class="relative">
+              <img
+                src="./assets/img/programming/3.jpg"
+                alt="مقاله 3"
+                class="w-full h-32 md:h-40 object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+              ></div>
+            </div>
+            <div class="p-4 md:p-5">
+              <div class="flex items-center mb-2">
+                <span
+                  class="text-xs md:text-sm gradient-text bg-white/5 px-2.5 py-0.5 rounded-full"
+                  >UI/UX</span
+                >
+              </div>
+              <h3 class="text-base md:text-lg font-bold mb-2 gradient-text">
+                طراحی رابط کاربری مدرن
+              </h3>
+              <p
+                class="text-gray-300 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2"
+              >
+                اصول و تکنیک‌های طراحی رابط کاربری مدرن با استفاده از ابزارهای
+                جدید و متدهای نوین
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400">۲ ماه پیش</span>
+                <a
+                  href="#"
+                  class="gradient-text hover:opacity-80 transition-opacity text-xs md:text-sm flex items-center"
+                >
+                  ادامه مطلب
+                  <i class="bi bi-arrow-left mr-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="block md:hidden h-40"></div> <!-- فضای خالی 5rem (80px) فقط در حالت موبایل -->
+
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl md:text-4xl font-bold mb-8 md:mb-12 text-center bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent">
-                تماس با من
-            </h2>
-            <div class="max-w-2xl mx-auto">
-                <div class="glass-effect p-4 md:p-8 rounded-2xl">
-                    <form class="space-y-4 md:space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">نام</label>
-                            <input type="text" class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors text-sm md:text-base">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">ایمیل</label>
-                            <input type="email" class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors text-sm md:text-base">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">پیام</label>
-                            <textarea rows="4" class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors text-sm md:text-base"></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-2.5 md:py-3 rounded-lg bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] text-white font-medium hover:opacity-90 transition-opacity text-sm md:text-base">
-                            ارسال پیام
-                        </button>
-                    </form>
-                </div>
-            </div>
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-2xl md:text-4xl font-bold mb-8 md:mb-12 text-center bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent"
+        >
+          تماس با من
+        </h2>
+        <div class="max-w-2xl mx-auto">
+          <div class="glass-effect p-4 md:p-8 rounded-2xl">
+            <form class="space-y-4 md:space-y-6">
+              <div>
+                <label class="block text-sm font-medium mb-2">نام</label>
+                <input
+                  type="text"
+                  class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors text-sm md:text-base"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">ایمیل</label>
+                <input
+                  type="email"
+                  class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors text-sm md:text-base"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">پیام</label>
+                <textarea
+                  rows="4"
+                  class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#FF6B6B] focus:outline-none transition-colors text-sm md:text-base"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full py-2.5 md:py-3 rounded-lg bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] text-white font-medium hover:opacity-90 transition-opacity text-sm md:text-base"
+              >
+                ارسال پیام
+              </button>
+            </form>
+          </div>
         </div>
+      </div>
+      <div class="block md:hidden h-40"></div> <!-- فضای خالی 5rem (80px) فقط در حالت موبایل -->
+
     </section>
 
     <!-- Page Transition Effect -->
     <div class="page-transition"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // متغیرهای اصلی
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('a[href^="#"]');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const pageTransition = document.querySelector('.page-transition');
-            
-            // تابع نمایش بخش
-            function showSection(sectionId, pushState = true) {
-                // نمایش انیمیشن انتقال
-                pageTransition.classList.add('active');
-                
-                // مخفی کردن همه بخش‌ها
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                    section.style.transform = 'translateX(100%) scale(0.98) rotateY(0deg)';
-                    section.style.opacity = '0';
-                    section.style.visibility = 'hidden';
-                    section.style.transitionDelay = '0s';
-                });
-                
-                // بعد از اتمام انیمیشن ورق زدن، بخش جدید را نمایش دهیم
-                setTimeout(() => {
-                    // نمایش بخش مورد نظر
-                    const targetSection = document.querySelector(sectionId);
-                    if (targetSection) {
-                        targetSection.style.transitionDelay = '0.2s';
-                        targetSection.classList.add('active');
-                        targetSection.style.transform = 'translateX(0) scale(1) rotateY(0deg)';
-                        targetSection.style.opacity = '1';
-                        targetSection.style.visibility = 'visible';
-                        
-                        // بروزرسانی کلاس active در لینک‌ها
-                        navLinks.forEach(link => {
-                            if (link.getAttribute('href') === sectionId) {
-                                link.classList.add('active');
-                            } else {
-                                link.classList.remove('active');
-                            }
-                        });
-                        
-                        // اضافه کردن به تاریخچه مرورگر
-                        if (pushState) {
-                            history.pushState({ section: sectionId }, '', sectionId);
-                        }
-                    }
-                    
-                    // مخفی کردن انیمیشن انتقال
-                    setTimeout(() => {
-                        pageTransition.classList.remove('active');
-                    }, 1500);
-                }, 1500);
-            }
-            
-            // تنظیم استایل‌های اولیه بخش‌ها
-            sections.forEach(section => {
-                section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            });
-            
-            // مدیریت کلیک روی لینک‌ها
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const sectionId = link.getAttribute('href');
-                    showSection(sectionId);
-                });
-            });
-            
-            // مدیریت دکمه منوی موبایل
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    mobileMenu.classList.toggle('hidden');
-                });
-                
-                // بستن منوی موبایل با کلیک خارج از آن
-                document.addEventListener('click', (e) => {
-                    if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            }
-            
-            // مدیریت دکمه‌های مرورگر (برگشت/جلو)
-            window.addEventListener('popstate', (e) => {
-                if (e.state && e.state.section) {
-                    showSection(e.state.section, false);
+      document.addEventListener("DOMContentLoaded", function () {
+        // متغیرهای اصلی
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const pageTransition = document.querySelector(".page-transition");
+
+        // تابع نمایش بخش
+        function showSection(sectionId, pushState = true) {
+          // نمایش انیمیشن انتقال
+          pageTransition.classList.add("active");
+
+          // مخفی کردن همه بخش‌ها
+          sections.forEach((section) => {
+            section.classList.remove("active");
+            section.style.transform =
+              "translateX(100%) scale(0.98) rotateY(0deg)";
+            section.style.opacity = "0";
+            section.style.visibility = "hidden";
+            section.style.transitionDelay = "0s";
+          });
+
+          // بعد از اتمام انیمیشن ورق زدن، بخش جدید را نمایش دهیم
+          setTimeout(() => {
+            // نمایش بخش مورد نظر
+            const targetSection = document.querySelector(sectionId);
+            if (targetSection) {
+              targetSection.style.transitionDelay = "0.2s";
+              targetSection.classList.add("active");
+              targetSection.style.transform =
+                "translateX(0) scale(1) rotateY(0deg)";
+              targetSection.style.opacity = "1";
+              targetSection.style.visibility = "visible";
+
+              // بروزرسانی کلاس active در لینک‌ها
+              navLinks.forEach((link) => {
+                if (link.getAttribute("href") === sectionId) {
+                  link.classList.add("active");
+                } else {
+                  link.classList.remove("active");
                 }
-            });
-            
-            // نمایش بخش اولیه
-            const initialSection = window.location.hash || '#home';
-            showSection(initialSection, false);
-        });
+              });
 
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
+              // اضافه کردن به تاریخچه مرورگر
+              if (pushState) {
+                history.pushState({ section: sectionId }, "", sectionId);
+              }
+            }
 
-        function toggleTheme() {
-            html.classList.toggle('dark');
-            const icon = themeToggle.querySelector('i');
-            icon.classList.toggle('bi-moon-stars');
-            icon.classList.toggle('bi-sun');
+            // مخفی کردن انیمیشن انتقال
+            setTimeout(() => {
+              pageTransition.classList.remove("active");
+            }, 1500);
+          }, 1500);
         }
 
-        themeToggle.addEventListener('click', toggleTheme);
+        // تنظیم استایل‌های اولیه بخش‌ها
+        sections.forEach((section) => {
+          section.style.transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
+        });
 
-        // Initialize Swiper
-        const projectSwiper = new Swiper('.project-swiper', {
+        // مدیریت کلیک روی لینک‌ها
+        navLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const sectionId = link.getAttribute("href");
+            showSection(sectionId);
+          });
+        });
+
+        // مدیریت دکمه منوی موبایل
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle("hidden");
+          });
+
+          // بستن منوی موبایل با کلیک خارج از آن
+          document.addEventListener("click", (e) => {
+            if (
+              !mobileMenu.contains(e.target) &&
+              !mobileMenuButton.contains(e.target)
+            ) {
+              mobileMenu.classList.add("hidden");
+            }
+          });
+        }
+
+        // مدیریت دکمه‌های مرورگر (برگشت/جلو)
+        window.addEventListener("popstate", (e) => {
+          if (e.state && e.state.section) {
+            showSection(e.state.section, false);
+          }
+        });
+
+        // نمایش بخش اولیه
+        const initialSection = window.location.hash || "#home";
+        showSection(initialSection, false);
+      });
+
+      // Theme Toggle
+      const themeToggle = document.getElementById("theme-toggle");
+      const html = document.documentElement;
+
+      function toggleTheme() {
+        html.classList.toggle("dark");
+        const icon = themeToggle.querySelector("i");
+        icon.classList.toggle("bi-moon-stars");
+        icon.classList.toggle("bi-sun");
+      }
+
+      themeToggle.addEventListener("click", toggleTheme);
+
+      // Initialize Swiper
+      const projectSwiper = new Swiper(".project-swiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        effect: "slide",
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          640: {
             slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            effect: 'slide',
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-                1280: {
-                    slidesPerView: 4,
-                },
-            },
-        });
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+          1280: {
+            slidesPerView: 4,
+          },
+        },
+      });
 
-        // Project Tabs Functionality
-        const projectTabs = document.querySelectorAll('.project-tab');
-        const slides = document.querySelectorAll('.swiper-slide');
+      // Project Tabs Functionality
+      const projectTabs = document.querySelectorAll(".project-tab");
+      const slides = document.querySelectorAll(".swiper-slide");
 
-        projectTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                projectTabs.forEach(t => t.classList.remove('active'));
-                // Add active class to clicked tab
-                tab.classList.add('active');
+      projectTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remove active class from all tabs
+          projectTabs.forEach((t) => t.classList.remove("active"));
+          // Add active class to clicked tab
+          tab.classList.add("active");
 
-                const category = tab.getAttribute('data-category');
-                
-                if (category === 'all') {
-                    // Show all slides and maintain their order
-                    slides.forEach(slide => {
-                        slide.style.display = 'block';
-                        slide.style.order = '0'; // Reset order
-                    });
-                    // Update slidesPerView for "all" category
-                    projectSwiper.params.slidesPerView = 4;
-                    projectSwiper.params.loop = true;
-                    projectSwiper.params.effect = 'slide';
-                    projectSwiper.params.spaceBetween = 30;
-                } else {
-                    // Filter slides by category
-                    slides.forEach(slide => {
-                        if (slide.getAttribute('data-category') === category) {
-                            slide.style.display = 'block';
-                        } else {
-                            slide.style.display = 'none';
-                        }
-                    });
-                    // Reset slidesPerView for other categories
-                    projectSwiper.params.slidesPerView = 3;
-                    projectSwiper.params.loop = true;
-                    projectSwiper.params.effect = 'slide';
-                    projectSwiper.params.spaceBetween = 30;
-                }
+          const category = tab.getAttribute("data-category");
 
-                // Update Swiper
-                projectSwiper.update();
+          if (category === "all") {
+            // Show all slides and maintain their order
+            slides.forEach((slide) => {
+              slide.style.display = "block";
+              slide.style.order = "0"; // Reset order
             });
+            // Update slidesPerView for "all" category
+            projectSwiper.params.slidesPerView = 4;
+            projectSwiper.params.loop = true;
+            projectSwiper.params.effect = "slide";
+            projectSwiper.params.spaceBetween = 30;
+          } else {
+            // Filter slides by category
+            slides.forEach((slide) => {
+              if (slide.getAttribute("data-category") === category) {
+                slide.style.display = "block";
+              } else {
+                slide.style.display = "none";
+              }
+            });
+            // Reset slidesPerView for other categories
+            projectSwiper.params.slidesPerView = 3;
+            projectSwiper.params.loop = true;
+            projectSwiper.params.effect = "slide";
+            projectSwiper.params.spaceBetween = 30;
+          }
+
+          // Update Swiper
+          projectSwiper.update();
         });
+      });
     </script>
-</body>
+  </body>
 </html>
